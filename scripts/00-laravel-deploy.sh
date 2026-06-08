@@ -1,20 +1,31 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
+
+cd /var/www/html
+
+echo "Fixing storage permissions..."
+chmod -R 775 storage bootstrap/cache
+chown -R nginx:nginx storage bootstrap/cache 2>/dev/null || chown -R www-data:www-data storage bootstrap/cache 2>/dev/null || true
 
 echo "Running composer..."
-composer install --no-dev --optimize-autoloader --working-dir=/var/www/html
+composer install --no-dev --optimize-autoloader --no-interaction
 
-echo "Caching config..."
-php /var/www/html/artisan config:cache
-
-echo "Caching routes..."
-php /var/www/html/artisan route:cache
-
-echo "Caching views..."
-php /var/www/html/artisan view:cache
-
-echo "Linking storage..."
-php /var/www/html/artisan storage:link || true
+echo "Clearing old caches..."
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
 
 echo "Running migrations..."
-php /var/www/html/artisan migrate --force
+php artisan migrate --force
+
+echo "Seeding database (first deploy)..."
+php artisan db:seed --force || true
+
+echo "Linking storage..."
+php artisan storage:link || true
+
+echo "Caching config..."
+php artisan config:cache
+
+echo "Caching routes..."
+php artisan route:cache

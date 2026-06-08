@@ -14,8 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(UsersTableSeeder::class);
-          \App\Models\User::factory(8)->create();
+         $this->call([
+            UsersTableSeeder::class,
+            CategorySubCategorySeeder::class,
+            SliderSeeder::class,
+         ]);
+
+         if (\App\Models\User::count() <= 3) {
+            \App\Models\User::factory(8)->create();
+         }
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

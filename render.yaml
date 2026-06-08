@@ -13,12 +13,30 @@ services:
     runtime: docker
     plan: free
     envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: olys-bazar-db
-          property: connectionString
       - key: DB_CONNECTION
         value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: olys-bazar-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: olys-bazar-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: olys-bazar-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: olys-bazar-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: olys-bazar-db
+          property: password
+      - key: DB_SSLMODE
+        value: require
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
@@ -28,7 +46,11 @@ services:
       - key: APP_KEY
         generateValue: true
       - key: APP_URL
-        sync: false
+        value: https://olys-bazar.onrender.com
+      - key: SESSION_DRIVER
+        value: cookie
+      - key: CACHE_DRIVER
+        value: file
       - key: STRIPE_KEY
         sync: false
       - key: STRIPE_SECRET

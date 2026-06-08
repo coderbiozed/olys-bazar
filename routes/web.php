@@ -48,9 +48,9 @@ use App\Http\Controllers\User\ReviewController;
 |
 */ 
  
-// Route::get('/', function () {
-//     return view('frontend.index');
-// });
+Route::get('/health', function () {
+    return response()->json(['status' => 'ok']);
+});
 
 Route::get('/', [IndexController::class, 'Index']);
 
