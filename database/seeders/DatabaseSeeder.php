@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             CategorySubCategorySeeder::class,
             SliderSeeder::class,
+            SiteSettingSeeder::class,
+            SeoSeeder::class,
          ]);
 
          if (\App\Models\User::count() <= 3) {
