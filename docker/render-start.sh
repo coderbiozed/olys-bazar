@@ -11,9 +11,11 @@ echo "DATABASE_URL set: $([ -n "${DATABASE_URL:-}" ] && echo yes || echo NO)"
 
 chmod -R 777 storage bootstrap/cache
 
-if [ -z "${APP_KEY:-}" ]; then
-  echo "APP_KEY missing, generating..."
+if [[ -z "${APP_KEY:-}" || ! "${APP_KEY}" =~ ^base64: ]]; then
+  echo "APP_KEY missing or invalid (must start with base64:), generating..."
   export APP_KEY="$(php artisan key:generate --show)"
+  echo "IMPORTANT: Save this in Render -> Environment -> APP_KEY:"
+  echo "APP_KEY=${APP_KEY}"
 fi
 
 composer install --no-dev --optimize-autoloader --no-interaction

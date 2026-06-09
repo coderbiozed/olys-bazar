@@ -29,6 +29,10 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
+            Route::get('/ping', function () {
+                return response('pong', 200);
+            });
+
             Route::middleware('api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));

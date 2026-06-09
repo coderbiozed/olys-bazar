@@ -27,7 +27,7 @@ services:
       - key: LOG_LEVEL
         value: debug
       - key: APP_KEY
-        generateValue: true
+        sync: false
       - key: APP_URL
         value: https://mukamghor.onrender.com
       - key: SESSION_DRIVER
