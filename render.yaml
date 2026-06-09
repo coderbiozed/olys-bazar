@@ -1,11 +1,13 @@
 # Blueprint: Mukamghor
+# Reuses the existing free-tier database (olys-bazar-db).
+# Render allows only ONE free database per account.
 # Docs: https://render.com/docs/deploy-php-laravel-docker
 
 databases:
-  - name: mukamghor-db
+  - name: olys-bazar-db
     plan: free
-    databaseName: mukamghor
-    user: mukamghor
+    databaseName: olys_bazar
+    user: olys_bazar
 
 services:
   - type: web
@@ -17,23 +19,23 @@ services:
         value: pgsql
       - key: DB_HOST
         fromDatabase:
-          name: mukamghor-db
+          name: olys-bazar-db
           property: host
       - key: DB_PORT
         fromDatabase:
-          name: mukamghor-db
+          name: olys-bazar-db
           property: port
       - key: DB_DATABASE
         fromDatabase:
-          name: mukamghor-db
+          name: olys-bazar-db
           property: database
       - key: DB_USERNAME
         fromDatabase:
-          name: mukamghor-db
+          name: olys-bazar-db
           property: user
       - key: DB_PASSWORD
         fromDatabase:
-          name: mukamghor-db
+          name: olys-bazar-db
           property: password
       - key: DB_SSLMODE
         value: require

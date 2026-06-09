@@ -53,7 +53,7 @@ Use a free platform that connects to your GitHub repo:
 2. Sign up at [render.com](https://render.com) with your GitHub account
 3. Click **New** → **Blueprint**
 4. Connect your GitHub repository and create the **Mukamghor** blueprint
-5. Render reads `render.yaml` and creates the `mukamghor` web service + free PostgreSQL database (the app listens on Render's `$PORT`)
+5. Render reads `render.yaml` and creates the `mukamghor` web service, reusing your existing free database `olys-bazar-db` (Render allows only one free database)
 6. Set `APP_URL` in Render to your live URL (e.g. `https://mukamghor.onrender.com`)
 7. Optionally set `STRIPE_KEY` and `STRIPE_SECRET` if you use Stripe payments
 8. Migrations run automatically on deploy; to seed data, open the Render shell and run:
