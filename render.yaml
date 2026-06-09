@@ -38,7 +38,7 @@ services:
           name: olys-bazar-db
           property: password
       - key: DB_SSLMODE
-        value: require
+        value: prefer
       - key: APP_ENV
         value: production
       - key: APP_DEBUG

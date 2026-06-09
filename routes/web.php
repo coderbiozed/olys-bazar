@@ -36,6 +36,7 @@ use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\AllUserController;
 
 use App\Http\Controllers\User\ReviewController;
+use App\Http\Controllers\HealthController;
  
 /*
 |--------------------------------------------------------------------------
@@ -48,9 +49,7 @@ use App\Http\Controllers\User\ReviewController;
 |
 */ 
  
-Route::get('/health', function () {
-    return response()->json(['status' => 'ok']);
-});
+Route::get('/health', HealthController::class);
 
 Route::get('/', [IndexController::class, 'Index']);
 
