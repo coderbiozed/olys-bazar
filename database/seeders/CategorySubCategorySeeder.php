@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class CategorySubCategorySeeder extends Seeder
 {
@@ -142,5 +143,9 @@ class CategorySubCategorySeeder extends Seeder
             ]);
         }
 
+        if (DB::getDriverName() === 'pgsql') {
+            DB::statement("SELECT setval(pg_get_serial_sequence('categories', 'id'), COALESCE((SELECT MAX(id) FROM categories), 1))");
+            DB::statement("SELECT setval(pg_get_serial_sequence('sub_categories', 'id'), COALESCE((SELECT MAX(id) FROM sub_categories), 1))");
+        }
     }
 }

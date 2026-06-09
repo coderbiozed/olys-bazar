@@ -2,24 +2,15 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use DB;
 
 class UsersTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        
-
-        DB::table('users')->insert([
-            //Admin 
+        $users = [
             [
                 'name' => 'Admin',
                 'username' => 'admin',
@@ -27,9 +18,7 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('111'),
                 'role' => 'admin',
                 'status' => 'active',
-
             ],
-              //Vendor 
             [
                 'name' => 'Ariyan Vendor',
                 'username' => 'vendor',
@@ -37,9 +26,7 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('111'),
                 'role' => 'vendor',
                 'status' => 'active',
-
             ],
-              //User OR Customer  
             [
                 'name' => 'User',
                 'username' => 'user',
@@ -47,11 +34,14 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('111'),
                 'role' => 'user',
                 'status' => 'active',
-
             ],
+        ];
 
-
-        ]);
-
+        foreach ($users as $user) {
+            DB::table('users')->updateOrInsert(
+                ['email' => $user['email']],
+                $user
+            );
+        }
     }
 }

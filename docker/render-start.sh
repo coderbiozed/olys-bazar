@@ -3,30 +3,37 @@ set -euo pipefail
 
 cd /var/www/html
 
-echo "Fixing storage permissions..."
-chmod -R 775 storage bootstrap/cache
+echo "=== Mukamghor startup ==="
+echo "PORT=${PORT:-10000}"
+echo "APP_KEY set: $([ -n "${APP_KEY:-}" ] && echo yes || echo NO)"
+echo "DB_CONNECTION=${DB_CONNECTION:-not-set}"
+echo "DATABASE_URL set: $([ -n "${DATABASE_URL:-}" ] && echo yes || echo NO)"
+
+chmod -R 777 storage bootstrap/cache
 
 if [ -z "${APP_KEY:-}" ]; then
   echo "APP_KEY missing, generating..."
   export APP_KEY="$(php artisan key:generate --show)"
 fi
 
-echo "Running composer..."
 composer install --no-dev --optimize-autoloader --no-interaction
 
-echo "Clearing caches..."
 php artisan config:clear
 php artisan route:clear
 php artisan view:clear
 php artisan cache:clear || true
 
+echo "Migration status:"
+php artisan migrate:status 2>&1 || true
+
 echo "Running migrations..."
-php artisan migrate --force
+if ! php artisan migrate --force 2>&1; then
+  echo "ERROR: migrations failed"
+fi
 
 echo "Seeding database..."
-php artisan db:seed --force || true
+php artisan db:seed --force 2>&1 || echo "WARNING: seeding skipped or failed"
 
-echo "Linking storage..."
 php artisan storage:link || true
 
 PORT="${PORT:-10000}"
