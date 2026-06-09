@@ -11,11 +11,6 @@
             (object) [
                 'slider_title' => 'Fresh Deals Daily',
                 'short_title' => 'Fruits, snacks, beverages and more',
-                'slider_image' => 'frontend/assets/imgs/slider/slider-2.png',
-            ],
-            (object) [
-                'slider_title' => 'Fresh Deals Daily',
-                'short_title' => 'Fruits, snacks, beverages and more',
                 'slider_image' => 'frontend/assets/imgs/slider/slider1-1.png',
             ],
         ]);

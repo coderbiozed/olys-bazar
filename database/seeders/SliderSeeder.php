@@ -13,24 +13,14 @@ class SliderSeeder extends Seeder
 
         $sliders = [
             [
-                'slider_title' => 'Fresh Groceries Delivered',
-                'short_title' => 'Shop daily essentials from MukamGhor Mart & Grocery',
-                'slider_image' => 'upload/slider/1740124720282597.jpg',
-            ],
-            [
-                'slider_title' => 'Best Deals Every Day',
-                'short_title' => 'Save more on fruits, snacks, beverages and household items',
-                'slider_image' => 'upload/slider/1740124692461696.jpg',
-            ],
-            [
-                'slider_title' => 'Quality You Can Trust',
-                'short_title' => 'Fresh produce, dairy, staples and more at your doorstep',
-                'slider_image' => 'upload/slider/1740125628962691.jpg',
-            ],
-            [
-                'slider_title' => 'Shop Smarter with MukamGhor',
-                'short_title' => 'Fast delivery, secure payment and great prices',
+                'slider_title' => 'Welcome to MukamGhor',
+                'short_title' => 'Your trusted mart & grocery store',
                 'slider_image' => 'frontend/assets/imgs/slider/slider-1.png',
+            ],
+            [
+                'slider_title' => 'Fresh Deals Daily',
+                'short_title' => 'Fruits, snacks, beverages and more',
+                'slider_image' => 'frontend/assets/imgs/slider/slider1-1.png',
             ],
         ];
 
