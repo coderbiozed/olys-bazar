@@ -12,7 +12,7 @@ class SiteSetting extends Model
 
     public function getLogoUrlAttribute(): string
     {
-        $default = asset('frontend/assets/imgs/theme/logo.svg');
+        $default = asset('frontend/assets/imgs/theme/logo-mukamghor.png');
 
         if (empty($this->logo) || !file_exists(public_path($this->logo))) {
             return $default;

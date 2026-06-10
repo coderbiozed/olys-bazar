@@ -19,12 +19,13 @@ class CategorySubCategorySeeder extends Seeder
                 'id' => 1,
                 'category_name' => 'Fresh Produce',
                 'category_slug' => 'fresh-produce',
-                'category_image' => 'frontend/assets/imgs/theme/icons/category-1.svg',
+                'category_image' => 'frontend/assets/imgs/theme/icons/category-10.svg',
                 'subcategories' => [
                     ['name' => 'Fruits', 'slug' => 'fruits'],
                     ['name' => 'Vegetables', 'slug' => 'vegetables'],
                     ['name' => 'Organic Foods', 'slug' => 'organic-foods'],
                     ['name' => 'Herbs & Spices', 'slug' => 'herbs-spices'],
+                    ['name' => 'Meat & Fish', 'slug' => 'meat-fish'],
                 ],
             ],
             [
@@ -37,6 +38,8 @@ class CategorySubCategorySeeder extends Seeder
                     ['name' => 'Eggs', 'slug' => 'eggs'],
                     ['name' => 'Cheese & Butter', 'slug' => 'cheese-butter'],
                     ['name' => 'Yogurt & Cream', 'slug' => 'yogurt-cream'],
+                    ['name' => 'Butter', 'slug' => 'butter'],
+                    ['name' => 'Cheese', 'slug' => 'cheese'],
                 ],
             ],
             [
@@ -61,18 +64,23 @@ class CategorySubCategorySeeder extends Seeder
                     ['name' => 'Flour & Lentils', 'slug' => 'flour-lentils'],
                     ['name' => 'Cooking Oil', 'slug' => 'cooking-oil'],
                     ['name' => 'Salt & Sugar', 'slug' => 'salt-sugar'],
+                    ['name' => 'Spices & Seasonings', 'slug' => 'spices-seasonings'],
+                    ['name' => 'Baking Ingredients', 'slug' => 'baking-ingredients'],
                 ],
             ],
             [
                 'id' => 5,
                 'category_name' => 'Snacks & Bakery',
                 'category_slug' => 'snacks-bakery',
-                'category_image' => 'frontend/assets/imgs/theme/icons/category-5.svg',
+                'category_image' => 'frontend/assets/imgs/theme/icons/category-8.svg',
                 'subcategories' => [
                     ['name' => 'Biscuits & Cookies', 'slug' => 'biscuits-cookies'],
                     ['name' => 'Chips & Nuts', 'slug' => 'chips-nuts'],
                     ['name' => 'Bread & Cakes', 'slug' => 'bread-cakes'],
                     ['name' => 'Instant Noodles', 'slug' => 'instant-noodles'],
+                    ['name' => 'Candy & Chocolate', 'slug' => 'candy-chocolate'],
+                    ['name' => 'Pastries', 'slug' => 'pastries'],
+                    ['name' => 'Snacks', 'slug' => 'snacks'],
                 ],
             ],
             [
@@ -85,6 +93,17 @@ class CategorySubCategorySeeder extends Seeder
                     ['name' => 'Kitchen Items', 'slug' => 'kitchen-items'],
                     ['name' => 'Personal Care', 'slug' => 'personal-care'],
                     ['name' => 'Laundry', 'slug' => 'laundry'],
+                    ['name' => 'Paper Products', 'slug' => 'paper-products'],
+                    ['name' => 'Pest Control', 'slug' => 'pest-control'],
+                    ['name' => 'Home Decor', 'slug' => 'home-decor'],
+                    ['name' => 'Home Appliances', 'slug' => 'home-appliances'],
+                    ['name' => 'Home Improvement', 'slug' => 'home-improvement'],
+                    ['name' => 'Pet Supplies', 'slug' => 'pet-supplies'],
+                    ['name' => 'Baby Products', 'slug' => 'baby-products'],
+                    ['name' => 'Health & Beauty', 'slug' => 'health-beauty'],
+                    ['name' => 'Office Supplies', 'slug' => 'office-supplies'],
+                    ['name' => 'Stationery', 'slug' => 'stationery'],
+                    ['name' => 'Furniture', 'slug' => 'furniture'],
                 ],
             ],
             [
@@ -97,11 +116,31 @@ class CategorySubCategorySeeder extends Seeder
                     ['name' => 'Computers & Laptops', 'slug' => 'computers-laptops'],
                     ['name' => 'TV & Audio', 'slug' => 'tv-audio'],
                     ['name' => 'Clothing & Shoes', 'slug' => 'clothing-shoes'],
+                    ['name' => 'Watches & Accessories', 'slug' => 'watches-accessories'],
+                    ['name' => 'Gaming & Consoles', 'slug' => 'gaming-consoles'],
+                    ['name' => 'Cameras & Photography', 'slug' => 'cameras-photography'],
+                    ['name' => 'Smart Home Devices', 'slug' => 'smart-home-devices'],
+                    ['name' => 'Audio & Headphones', 'slug' => 'audio-headphones'],
+                    ['name' => 'Wearable Technology', 'slug' => 'wearable-technology'],
+                    ['name' => 'Drones & Robotics', 'slug' => 'drones-robotics'],
+                    ['name' => 'Virtual Reality', 'slug' => 'virtual-reality'],
+                    ['name' => '3D Printing', 'slug' => '3d-printing'],
+                    ['name' => 'Fitness & Health Tech', 'slug' => 'fitness-health-tech'],
+                    ['name' => 'Automotive Electronics', 'slug' => 'automotive-electronics'],
+                    ['name' => 'Office Electronics', 'slug' => 'office-electronics'],
+                    ['name' => 'Audio & Home Theater', 'slug' => 'audio-home-theater'],
+                    ['name' => 'Computer Components', 'slug' => 'computer-components'],
+                    ['name' => 'Networking & Wi-Fi', 'slug' => 'networking-wifi'],
+                    ['name' => 'Storage Devices', 'slug' => 'storage-devices'],
                 ],
             ],
         ];
 
+        $seededCategoryIds = [];
+
         foreach ($categories as $cat) {
+            $seededCategoryIds[] = $cat['id'];
+
             Category::updateOrCreate(
                 ['id' => $cat['id']],
                 [
@@ -112,34 +151,43 @@ class CategorySubCategorySeeder extends Seeder
             );
 
             foreach ($cat['subcategories'] as $sub) {
-                SubCategory::create([
-                    'category_id' => $cat['id'],
-                    'subcategory_name' => $sub['name'],
-                    'subcategory_slug' => $sub['slug'],
-                ]);
+                SubCategory::updateOrCreate(
+                    [
+                        'category_id' => $cat['id'],
+                        'subcategory_slug' => $sub['slug'],
+                    ],
+                    [
+                        'subcategory_name' => $sub['name'],
+                    ]
+                );
             }
         }
 
-        $subIds = SubCategory::pluck('id', 'subcategory_slug');
+        Category::whereNotIn('id', $seededCategoryIds)->delete();
+
+        $subIds = SubCategory::all()
+            ->mapWithKeys(fn ($sub) => ["{$sub->category_id}:{$sub->subcategory_slug}" => $sub->id]);
 
         $productMap = [
-            1  => ['category_id' => 1, 'subcategory_slug' => 'organic-foods'],          // Olys Food
-            2  => ['category_id' => 6, 'subcategory_slug' => 'kitchen-items'],           // Mug
-            3  => ['category_id' => 7, 'subcategory_slug' => 'mobile-gadgets'],          // iPhone 13
-            4  => ['category_id' => 7, 'subcategory_slug' => 'tv-audio'],                // Samsung TV
-            5  => ['category_id' => 7, 'subcategory_slug' => 'clothing-shoes'],         // Nike Running Shoes
-            6  => ['category_id' => 7, 'subcategory_slug' => 'computers-laptops'],      // MacBook Pro
-            7  => ['category_id' => 7, 'subcategory_slug' => 'clothing-shoes'],         // Adidas Sports Jacket
-            8  => ['category_id' => 7, 'subcategory_slug' => 'tv-audio'],               // Sony Headphones
-            9  => ['category_id' => 1, 'subcategory_slug' => 'fruits'],                // Delicious Premium Apples
-            10 => ['category_id' => 3, 'subcategory_slug' => 'juice'],                 // Refreshing Tropical Drink
-            11 => ['category_id' => 5, 'subcategory_slug' => 'chips-nuts'],             // Assorted Organic Snacks
+            1  => ['category_id' => 1, 'subcategory_slug' => 'organic-foods'],
+            2  => ['category_id' => 6, 'subcategory_slug' => 'kitchen-items'],
+            3  => ['category_id' => 7, 'subcategory_slug' => 'mobile-gadgets'],
+            4  => ['category_id' => 7, 'subcategory_slug' => 'tv-audio'],
+            5  => ['category_id' => 7, 'subcategory_slug' => 'clothing-shoes'],
+            6  => ['category_id' => 7, 'subcategory_slug' => 'computers-laptops'],
+            7  => ['category_id' => 7, 'subcategory_slug' => 'clothing-shoes'],
+            8  => ['category_id' => 7, 'subcategory_slug' => 'tv-audio'],
+            9  => ['category_id' => 1, 'subcategory_slug' => 'fruits'],
+            10 => ['category_id' => 3, 'subcategory_slug' => 'juice'],
+            11 => ['category_id' => 5, 'subcategory_slug' => 'chips-nuts'],
         ];
 
         foreach ($productMap as $productId => $map) {
+            $subKey = "{$map['category_id']}:{$map['subcategory_slug']}";
+
             Product::where('id', $productId)->update([
                 'category_id' => $map['category_id'],
-                'subcategory_id' => $subIds[$map['subcategory_slug']] ?? null,
+                'subcategory_id' => $subIds[$subKey] ?? null,
             ]);
         }
 

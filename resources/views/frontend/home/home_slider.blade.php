@@ -23,7 +23,7 @@
             <div class="hero-slider-1 style-4 dot-style-1 dot-style-1-position-1" id="hero-slider-main">
                 @foreach($sliders as $item)
                     <div class="single-hero-slider single-animation-wrap"
-                         style="background-image: url('{{ asset($item->slider_image) }}');">
+                         style="background-image: url('{{ asset($item->slider_image) ?? 'frontend/assets/imgs/slider/slider-1.png'}}');">
                         <div class="slider-content">
                             <h1 class="display-2 mb-40">{{ $item->slider_title }}</h1>
                             <p class="mb-65">{{ $item->short_title }}</p>

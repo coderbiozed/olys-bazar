@@ -12,10 +12,10 @@ class SiteSettingSeeder extends Seeder
         SiteSetting::updateOrCreate(
             ['id' => 1],
             [
-                'support_phone' => '+880 1800 900',
-                'phone_one' => '+880 1800 900',
-                'email' => 'hello@mukamghor.com',
-                'company_address' => 'Dhaka, Bangladesh',
+                'support_phone' => '+880 1911594822',
+                'phone_one' => '+880 1400300234',
+                'email' => 'help@mukamghor.com',
+                'company_address' => 'Khulna, Bangladesh',
                 'facebook' => 'https://facebook.com',
                 'twitter' => 'https://twitter.com',
                 'youtube' => 'https://youtube.com',

@@ -56,22 +56,25 @@
 
 			<div class="row mb-3">
 				<div class="col-sm-3">
-					<h6 class="mb-0">Slider Image  </h6>
+					<h6 class="mb-0">Current Image</h6>
 				</div>
 				<div class="col-sm-9 text-secondary">
-					<input type="file" name="slider_image" class="form-control" id="image" accept="image/jpeg,image/png,image/gif,image/bmp,image/webp" />
-					<small class="text-muted">Leave empty to keep current image. JPG, PNG, GIF, BMP, or WebP only (max 5 MB).</small>
+					<img id="showImage" src="{{ asset($sliders->slider_image) }}" alt="Current slider" style="width: 200px; max-height: 120px; object-fit: cover;" class="d-block mb-2 rounded border" />
+					<span class="text-muted small">{{ basename($sliders->slider_image) }}</span>
 				</div>
 			</div>
 
-
-
 			<div class="row mb-3">
 				<div class="col-sm-3">
-					<h6 class="mb-0"> </h6>
+					<h6 class="mb-0">Replace Image</h6>
 				</div>
 				<div class="col-sm-9 text-secondary">
-					 <img id="showImage" src="{{ asset($sliders->slider_image) }}" alt="Admin" style="width:100px; height: 100px;"  >
+					<input type="file" name="slider_image" class="form-control" id="image" accept="image/jpeg,image/png,image/gif,image/bmp,image/webp" />
+					<small class="text-muted d-block mt-1">Optional — only choose a file if you want a new image. JPG, PNG, GIF, BMP, or WebP (max 5 MB).</small>
+					<span id="selectedFileName" class="text-success small d-none mt-1"></span>
+					@error('slider_image')
+						<span class="text-danger small d-block mt-1">{{ $message }}</span>
+					@enderror
 				</div>
 			</div>
 
@@ -146,11 +149,17 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#image').change(function(e){
+			var file = e.target.files[0];
+			if (!file) {
+				$('#selectedFileName').addClass('d-none').text('');
+				return;
+			}
+			$('#selectedFileName').removeClass('d-none').text('New file selected: ' + file.name);
 			var reader = new FileReader();
 			reader.onload = function(e){
-				$('#showImage').attr('src',e.target.result);
+				$('#showImage').attr('src', e.target.result);
 			}
-			reader.readAsDataURL(e.target.files['0']);
+			reader.readAsDataURL(file);
 		});
 	});
 

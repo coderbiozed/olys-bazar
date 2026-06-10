@@ -57,7 +57,11 @@
 				</div>
 				<div class="col-sm-9 text-secondary">
 					<input type="file" name="slider_image" class="form-control" id="image" accept="image/jpeg,image/png,image/gif,image/bmp,image/webp" required />
-					<small class="text-muted">JPG, PNG, GIF, BMP, or WebP only (max 5 MB). HEIC/SVG/PDF are not supported.</small>
+					<small class="text-muted d-block mt-1">Required. JPG, PNG, GIF, BMP, or WebP only (max 5 MB).</small>
+					<span id="selectedFileName" class="text-success small d-none mt-1"></span>
+					@error('slider_image')
+						<span class="text-danger small d-block mt-1">{{ $message }}</span>
+					@enderror
 				</div>
 			</div>
 
@@ -143,11 +147,17 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#image').change(function(e){
+			var file = e.target.files[0];
+			if (!file) {
+				$('#selectedFileName').addClass('d-none').text('');
+				return;
+			}
+			$('#selectedFileName').removeClass('d-none').text('Selected: ' + file.name);
 			var reader = new FileReader();
 			reader.onload = function(e){
-				$('#showImage').attr('src',e.target.result);
+				$('#showImage').attr('src', e.target.result);
 			}
-			reader.readAsDataURL(e.target.files['0']);
+			reader.readAsDataURL(file);
 		});
 	});
 

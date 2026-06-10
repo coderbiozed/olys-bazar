@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
                 'status' => 'active',
             ],
             [
-                'name' => 'Ariyan Vendor',
+                'name' => 'Oly\'s Bazar',
                 'username' => 'vendor',
                 'email' => 'vendor@gmail.com',
                 'password' => Hash::make('111'),

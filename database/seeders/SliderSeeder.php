@@ -22,6 +22,16 @@ class SliderSeeder extends Seeder
                 'short_title' => 'Fruits, snacks, beverages and more',
                 'slider_image' => 'frontend/assets/imgs/slider/slider1-1.png',
             ],
+                [
+                    'slider_title' => 'Shop with Confidence',
+                    'short_title' => 'Quality products at your fingertips',
+                    'slider_image' => 'frontend/assets/imgs/slider/slider1-2.png',
+                ],
+                    [
+                        'slider_title' => 'Fast Delivery',
+                        'short_title' => 'Get your groceries delivered to your door',
+                        'slider_image' => 'frontend/assets/imgs/slider/slider-1-3.png',
+                    ],
         ];
 
         foreach ($sliders as $slider) {

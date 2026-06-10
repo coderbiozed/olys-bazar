@@ -46,7 +46,7 @@
                     </ul>
                 </li>
 
-                 <li>Need help? Call Us: <strong class="text-brand"> + 1800 900</strong></li>
+                 <li>Need help? Call Us: <strong class="text-brand"> +{{ $setting?->phone ?? '0191100000000' }}</strong></li>
                                
                             </ul>
                         </div>
@@ -56,7 +56,7 @@
         </div>
         @php
             $setting = App\Models\SiteSetting::find(1);
-            $siteLogo = $setting?->logo_url ?? asset('frontend/assets/imgs/theme/logo.svg');
+            $siteLogo = $setting?->logo_url ?? asset('frontend/assets/imgs/theme/logo-mukamghor.png');
         @endphp
         <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
             <div class="container">
@@ -573,7 +573,7 @@
                         <a href="page-login.html"><i class="fi-rs-user"></i>Log In / Sign Up </a>
                     </div>
                     <div class="single-mobile-header-info">
-                        <a href="#"><i class="fi-rs-headphones"></i>(+01) - 2345 - 6789 </a>
+                        <a href="#"><i class="fi-rs-headphones"></i>(+{{ $setting?->phone ?? '0191100000000' }}) - 2345 - 6789 </a>
                     </div>
                 </div>
                 <div class="mobile-social-icon mb-50">
@@ -584,7 +584,7 @@
                     <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-pinterest-white.svg') }}" alt="" /></a>
                     <a href="#"><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-youtube-white.svg') }}" alt="" /></a>
                 </div>
-                <div class="site-copyright">Copyright 2022 © Nest. All rights reserved. Powered by AliThemes.</div>
+                <div class="site-copyright">Copyright 2022 © {{ $setting?->site_name ?? 'Olys Bazar' }}. All rights reserved. Powered by AliThemes.</div>
             </div>
         </div>
     </div>

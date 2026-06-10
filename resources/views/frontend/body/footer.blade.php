@@ -15,7 +15,7 @@
                                 Stay home & get your daily <br />
                                 needs from our shop
                             </h2>
-                            <p class="mb-45">Start your daily shopping with <span class="text-brand">Olys Bazar</span></p>
+                            <p class="mb-45">Start your daily shopping with <span class="text-brand">{{ $setting?->site_name ?? 'Olys Bazar' }}</span></p>
                             <form class="form-subcriber d-flex" method="post" action="{{ route('newsletter.subscribe') }}">
                                 @csrf
                                 <input type="email" name="email" placeholder="Your email address" required />
@@ -96,9 +96,9 @@
                     <div class="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0 wow animate__animated animate__fadeInUp" data-wow-delay="0">
                         <div class="logo mb-30">
                             <a href="{{ url('/') }}" class="mb-15">
-                                <img src="{{ $setting?->logo_url ?? asset('frontend/assets/imgs/theme/logo.svg') }}" alt="logo" />
+                                <img src="{{ $setting?->logo_url ?? asset('frontend/assets/imgs/theme/logo-mukamghor.png') }}" alt="logo" />
                             </a>
-                            <p class="font-lg text-heading">MukamGhor Mart &amp; Grocery</p>
+                            <p class="font-lg text-heading">{{ $setting?->site_name ?? 'MukamGhor Mart &amp; Grocery' }}    </p>
                         </div>
                         <ul class="contact-infor">
                             @if($setting?->company_address)
