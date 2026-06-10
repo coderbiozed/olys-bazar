@@ -44,7 +44,7 @@
                     <h6 class="text-muted">Subtotal</h6>
                 </td>
                 <td class="cart_total_amount">
-                    <h4 class="text-brand text-end">${{ $cartTotal }}</h4>
+                    <h4 class="text-brand text-end">{{ $currency }}{{ $cartTotal }}</h4>
                 </td>
             </tr>
             
@@ -62,7 +62,7 @@
                     <h6 class="text-muted">Coupon Discount</h6>
                 </td>
                 <td class="cart_total_amount">
-                    <h4 class="text-brand text-end">${{ session()->get('coupon')['discount_amount'] }}</h4>
+                    <h4 class="text-brand text-end">{{ $currency }}{{ session()->get('coupon')['discount_amount'] }}</h4>
                 </td>
             </tr>
 
@@ -71,7 +71,7 @@
                     <h6 class="text-muted">Grand Total</h6>
                 </td>
                 <td class="cart_total_amount">
-                    <h4 class="text-brand text-end">${{ session()->get('coupon')['total_amount'] }}</h4>
+                    <h4 class="text-brand text-end">{{ $currency }}{{ session()->get('coupon')['total_amount'] }}</h4>
                 </td>
             </tr>
 
@@ -84,7 +84,7 @@
                     <h6 class="text-muted">Grand Total</h6>
                 </td>
                 <td class="cart_total_amount">
-                    <h4 class="text-brand text-end">${{ $cartTotal }}</h4>
+                    <h4 class="text-brand text-end">{{ $currency }}{{ $cartTotal }}</h4>
                 </td>
             </tr>
      @endif

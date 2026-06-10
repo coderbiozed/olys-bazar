@@ -135,14 +135,14 @@
 
                     @if($product->discount_price == NULL)
                      <div class="product-price">
-                        <span>${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->selling_price }}</span>
                        
                     </div>
 
                     @else
                     <div class="product-price">
-                        <span>${{ $product->discount_price }}</span>
-                        <span class="old-price">${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->discount_price }}</span>
+                        <span class="old-price">{{ $currency }}{{ $product->selling_price }}</span>
                     </div>
                     @endif
 
@@ -202,7 +202,7 @@ $products = App\Models\Product::where('category_id',$category->id)->get();
 
 
         <li>
-            <a href="shop-grid-right.html"> <img src=" {{ asset($category->category_image) }} " alt="" />{{ $category->category_name }}</a><span class="count">{{ count($products) }}</span>
+            <a href="shop-grid-right.html"> <img src="{{ $category->imageUrl() }}" alt="" />{{ $category->category_name }}</a><span class="count">{{ count($products) }}</span>
         </li>
         @endforeach 
                         </ul>
@@ -222,9 +222,9 @@ $products = App\Models\Product::where('category_id',$category->id)->get();
                 <p><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">{{ $product->product_name }}</a></p>
 
                    @if($product->discount_price == NULL)
-                    <p class="price mb-0 mt-5">${{ $product->selling_price }}</p>
+                    <p class="price mb-0 mt-5">{{ $currency }}{{ $product->selling_price }}</p>
                    @else
-                   <p class="price mb-0 mt-5">${{ $product->discount_price }}</p>
+                   <p class="price mb-0 mt-5">{{ $currency }}{{ $product->discount_price }}</p>
                    @endif
                 
                 <div class="product-rate">

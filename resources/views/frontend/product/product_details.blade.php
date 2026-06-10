@@ -90,16 +90,16 @@ $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1
 
  @if($product->discount_price == NULL)
 <div class="product-price primary-color float-left">
-            <span class="current-price text-brand">${{ $product->selling_price }}</span>
+            <span class="current-price text-brand">{{ $currency }}{{ $product->selling_price }}</span>
             
         </div>
  @else
 
  <div class="product-price primary-color float-left">
-            <span class="current-price text-brand">${{ $product->discount_price }}</span>
+            <span class="current-price text-brand">{{ $currency }}{{ $product->discount_price }}</span>
             <span>
                 <span class="save-price font-md color3 ml-15">{{ round($discount) }}% Off</span>
-                <span class="old-price font-md ml-15">${{ $product->selling_price }}</span>
+                <span class="old-price font-md ml-15">{{ $currency }}{{ $product->selling_price }}</span>
             </span>
         </div>
 
@@ -583,14 +583,14 @@ $reviews = App\Models\Review::where('product_id',$product->id)->latest()->limit(
 
             @if($product->discount_price == NULL)
                      <div class="product-price">
-                        <span>${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->selling_price }}</span>
                        
                     </div>
 
                     @else
                     <div class="product-price">
-                        <span>${{ $product->discount_price }}</span>
-                        <span class="old-price">${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->discount_price }}</span>
+                        <span class="old-price">{{ $currency }}{{ $product->selling_price }}</span>
                     </div>
                     @endif
 

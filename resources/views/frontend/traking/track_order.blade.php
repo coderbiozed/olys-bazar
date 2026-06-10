@@ -29,7 +29,7 @@
 
      <div class="col"> <strong>Payment Method:</strong> <br>{{ $track->payment_method }} </div>
 
-     <div class="col"> <strong>Total Amount #:</strong> <br>${{ $track->amount }}</div>
+     <div class="col"> <strong>Total Amount #:</strong> <br>{{ $currency }}{{ $track->amount }}</div>
                 </div>
             </article>
             <div class="track">

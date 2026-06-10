@@ -168,6 +168,8 @@
 
  <script type="text/javascript">
     
+    const CURRENCY_SYMBOL = @json(config('payment.currency_symbol', '৳'));
+
     $.ajaxSetup({
         headers:{
             'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
@@ -186,7 +188,7 @@
                 // console.log(data)
  
             $('#pname').text(data.product.product_name);
-            $('#pprice').text(data.product.selling_price);
+            $('#pprice').text(CURRENCY_SYMBOL + data.product.selling_price);
             $('#pcode').text(data.product.product_code);
             $('#pcategory').text(data.product.category.category_name);
             $('#pbrand').text(data.product.brand.brand_name);
@@ -201,11 +203,11 @@
             if (data.product.discount_price == null) {
                 $('#pprice').text('');
                 $('#oldprice').text('');
-                $('#pprice').text(data.product.selling_price);
+                $('#pprice').text(CURRENCY_SYMBOL + data.product.selling_price);
 
             }else{
-                $('#pprice').text(data.product.discount_price);
-                $('#oldprice').text(data.product.selling_price); 
+                $('#pprice').text(CURRENCY_SYMBOL + data.product.discount_price);
+                $('#oldprice').text(CURRENCY_SYMBOL + data.product.selling_price); 
             } // end else
 
 
@@ -379,7 +381,7 @@
         success:function(response){
             // console.log(response)
 
-        $('.js-cart-subtotal').text(response.cartTotal);
+        $('.js-cart-subtotal').text(CURRENCY_SYMBOL + response.cartTotal);
         $('.js-cart-qty').text(response.cartQty);
 
         var miniCart = ""
@@ -392,7 +394,7 @@
                 </div>
                 <div class="shopping-cart-title" style="margin: -73px 74px 14px; width" 146px;>
                     <h4><a href="shop-product-right.html"> ${value.name} </a></h4>
-                    <h4><span>${value.qty} × </span>${value.price}</h4>
+                    <h4><span>${value.qty} × </span>${CURRENCY_SYMBOL}${value.price}</h4>
                 </div>
                 <div class="shopping-cart-delete" style="margin: -85px 1px 0px;">
                     <a type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"  ><i class="fi-rs-cross-small"></i></a>
@@ -542,8 +544,8 @@
                         </td>
                         <td class="price" data-title="Price">
                         ${value.product.discount_price == null
-                        ? `<h3 class="text-brand">$${value.product.selling_price}</h3>`
-                        :`<h3 class="text-brand">$${value.product.discount_price}</h3>`
+                        ? `<h3 class="text-brand">${CURRENCY_SYMBOL}${value.product.selling_price}</h3>`
+                        :`<h3 class="text-brand">${CURRENCY_SYMBOL}${value.product.discount_price}</h3>`
 
                         }
                             
@@ -705,8 +707,8 @@ function wishlistRemove(id){
                                     <td class="text-muted font-sm fw-600 font-heading">Price</td>
                                     <td class="product_price">
                       ${value.product.discount_price == null
-                        ? `<h4 class="price text-brand">$${value.product.selling_price}</h4>`
-                        :`<h4 class="price text-brand">$${value.product.discount_price}</h4>`
+                        ? `<h4 class="price text-brand">${CURRENCY_SYMBOL}${value.product.selling_price}</h4>`
+                        :`<h4 class="price text-brand">${CURRENCY_SYMBOL}${value.product.discount_price}</h4>`
 
                         } 
                                     </td>
@@ -826,7 +828,7 @@ function wishlistRemove(id){
                 
             </td>
             <td class="price" data-title="Price">
-                <h4 class="text-body">$${value.price} </h4>
+                <h4 class="text-body">${CURRENCY_SYMBOL}${value.price} </h4>
             </td>
 
               <td class="price" data-title="Price">
@@ -858,7 +860,7 @@ function wishlistRemove(id){
                 </div>
             </td>
             <td class="price" data-title="Price">
-                <h4 class="text-brand">$${value.subtotal} </h4>
+                <h4 class="text-brand">${CURRENCY_SYMBOL}${value.subtotal} </h4>
             </td>
             <td class="action text-center" data-title="Remove">
             <a type="submit" class="text-body"  id="${value.rowId}" onclick="cartRemove(this.id)"><i class="fi-rs-trash"></i></a></td>
@@ -1028,7 +1030,7 @@ function wishlistRemove(id){
                         <h6 class="text-muted">Subtotal</h6>
                     </td>
                     <td class="cart_total_amount">
-                        <h4 class="text-brand text-end">$${data.total}</h4>
+                        <h4 class="text-brand text-end">${CURRENCY_SYMBOL}${data.total}</h4>
                     </td>
                 </tr>
                  
@@ -1037,7 +1039,7 @@ function wishlistRemove(id){
                         <h6 class="text-muted">Grand Total</h6>
                     </td>
                     <td class="cart_total_amount">
-                        <h4 class="text-brand text-end">$${data.total}</h4>
+                        <h4 class="text-brand text-end">${CURRENCY_SYMBOL}${data.total}</h4>
                     </td>
                 </tr>
                 ` ) 
@@ -1048,7 +1050,7 @@ function wishlistRemove(id){
                         <h6 class="text-muted">Subtotal</h6>
                     </td>
                     <td class="cart_total_amount">
-                        <h4 class="text-brand text-end">$${data.subtotal}</h4>
+                        <h4 class="text-brand text-end">${CURRENCY_SYMBOL}${data.subtotal}</h4>
                     </td>
                 </tr>
                  
@@ -1066,7 +1068,7 @@ function wishlistRemove(id){
                         <h6 class="text-muted">Discount Amount  </h6>
                     </td>
                     <td class="cart_total_amount">
-    <h4 class="text-brand text-end">$${data.discount_amount}</h4>
+    <h4 class="text-brand text-end">${CURRENCY_SYMBOL}${data.discount_amount}</h4>
                     </td>
                 </tr>
 
@@ -1076,7 +1078,7 @@ function wishlistRemove(id){
                         <h6 class="text-muted">Grand Total </h6>
                     </td>
                     <td class="cart_total_amount">
-          <h4 class="text-brand text-end">$${data.total_amount}</h4>
+          <h4 class="text-brand text-end">${CURRENCY_SYMBOL}${data.total_amount}</h4>
                     </td>
                 </tr> `
                     ) 
