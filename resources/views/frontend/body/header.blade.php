@@ -233,8 +233,9 @@
                     </div>
                     <div class="header-nav d-none d-lg-flex">
                         <div class="main-categori-wrap d-none d-lg-block">
-                            <a class="categories-button-active" href="#">
-                                <span class="fi-rs-apps"></span>   All Categories
+                            <a class="categories-button-active" href="javascript:void(0)" role="button" aria-expanded="false" aria-haspopup="true">
+                                <span class="fi-rs-apps"></span>
+                                <span class="mg-cat-btn-text">All Categories</span>
                                 <i class="fi-rs-angle-down"></i>
                             </a>
 <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
@@ -282,47 +283,44 @@
                                 <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Show more...</span></div>
                             </div>
                         </div>
-                        <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
+                        <div class="main-menu main-menu-padding-1 main-menu-lh-2 mg-desktop-nav d-none d-lg-block font-heading">
                             <nav>
-                    <ul>
-                        
-                        <li>
-                            <a class="active" href="{{ url('/') }}">Home  </a>
-                            
-                        </li>
-    
-        @php
-
-    $categories = App\Models\Category::orderBy('category_name','ASC')->limit(6)->get();
-        @endphp
-
-       @foreach($categories as $category)    
-        <li>
-            <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">{{ $category->category_name }} <i class="fi-rs-angle-down"></i></a>
-
-   @php 
-    $subcategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('subcategory_name','ASC')->get();
-        @endphp
-
-            <ul class="sub-menu">
-                @foreach($subcategories as $subcategory)   
-                <li><a href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a></li>
-                @endforeach
-            </ul>
-        </li>
-        @endforeach
-
-
-                         
-               <li>
-                    <a href="{{ route('home.blog') }}">Blog</a>
-                </li>
-                 <li>
-                    <a href="{{ route('shop.page') }}">Shop</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+                                <ul>
+                                    <li>
+                                        <a class="{{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">Home</a>
+                                    </li>
+                                    <li>
+                                        <a class="{{ request()->routeIs('shop.page') ? 'active' : '' }}" href="{{ route('shop.page') }}">Shop</a>
+                                    </li>
+                                    @php
+                                        $navCategories = App\Models\Category::orderBy('category_name', 'ASC')->limit(4)->get();
+                                    @endphp
+                                    @foreach($navCategories as $category)
+                                        @php
+                                            $subcategories = App\Models\SubCategory::where('category_id', $category->id)->orderBy('subcategory_name', 'ASC')->get();
+                                        @endphp
+                                        <li>
+                                            <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">
+                                                {{ $category->category_name }}
+                                                @if($subcategories->isNotEmpty())
+                                                    <i class="fi-rs-angle-down"></i>
+                                                @endif
+                                            </a>
+                                            @if($subcategories->isNotEmpty())
+                                                <ul class="sub-menu">
+                                                    @foreach($subcategories as $subcategory)
+                                                        <li><a href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a></li>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                    <li>
+                                        <a class="{{ request()->routeIs('home.blog') ? 'active' : '' }}" href="{{ route('home.blog') }}">Blog</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
 </div>
 
 

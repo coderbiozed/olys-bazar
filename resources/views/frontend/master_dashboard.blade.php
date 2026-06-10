@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/home-mobile.css?v=1.0') }}" />
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/glass-vibe.css?v=1.2') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/glass-vibe.css?v=1.8') }}" />
     <style>
         .logo.logo-width-1 a img,
         .mobile-header-logo img {
@@ -111,6 +111,23 @@
     <script src="{{ asset('frontend/assets/js/plugins/jquery.elevatezoom.js') }}"></script>
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
+    <script>
+        $(function () {
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('.main-categori-wrap').length) {
+                    $('.categories-button-active').removeClass('open').attr('aria-expanded', 'false');
+                    $('.categories-dropdown-active-large').removeClass('open');
+                }
+            });
+
+            $('.categories-button-active').on('click', function () {
+                var $btn = $(this);
+                setTimeout(function () {
+                    $btn.attr('aria-expanded', $btn.hasClass('open') ? 'true' : 'false');
+                }, 0);
+            });
+        });
+    </script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
 
     <script src="{{ asset('frontend/assets/js/script.js') }}"></script>

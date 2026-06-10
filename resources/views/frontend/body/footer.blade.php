@@ -28,61 +28,66 @@
             </div>
         </div>
     </section>
-    <section class="featured section-padding">
+    <section class="mg-trust-tokens section-padding">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-1-5 col-md-4 col-12 col-sm-6 mb-md-4 mb-xl-0">
-                    <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp" data-wow-delay="0">
-                        <div class="banner-icon">
+            <div class="row g-3 g-lg-4">
+                <div class="col-lg col-md-6 col-12">
+                    <div class="mg-token-card mg-token-card--coral wow animate__animated animate__fadeInUp" data-wow-delay="0">
+                        <span class="mg-token-chip">Hot deal</span>
+                        <div class="mg-token-icon">
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-1.svg') }}" alt="" />
                         </div>
-                        <div class="banner-text">
-                            <h3 class="icon-box-title">Best prices & offers</h3>
+                        <div class="mg-token-body">
+                            <h3>Best prices &amp; offers</h3>
                             <p>Orders ৳500 or more</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                    <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
-                        <div class="banner-icon">
+                <div class="col-lg col-md-6 col-12">
+                    <div class="mg-token-card mg-token-card--yellow wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
+                        <span class="mg-token-chip">Free</span>
+                        <div class="mg-token-icon">
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-2.svg') }}" alt="" />
                         </div>
-                        <div class="banner-text">
-                            <h3 class="icon-box-title">Free delivery</h3>
+                        <div class="mg-token-body">
+                            <h3>Free delivery</h3>
                             <p>24/7 amazing services</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                    <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
-                        <div class="banner-icon">
+                <div class="col-lg col-md-6 col-12">
+                    <div class="mg-token-card mg-token-card--pink wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
+                        <span class="mg-token-chip">Daily</span>
+                        <div class="mg-token-icon">
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-3.svg') }}" alt="" />
                         </div>
-                        <div class="banner-text">
-                            <h3 class="icon-box-title">Great daily deal</h3>
+                        <div class="mg-token-body">
+                            <h3>Great daily deal</h3>
                             <p>When you sign up</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                    <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
-                        <div class="banner-icon">
+                <div class="col-lg col-md-6 col-12">
+                    <div class="mg-token-card mg-token-card--mint wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
+                        <span class="mg-token-chip">Save</span>
+                        <div class="mg-token-icon">
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-4.svg') }}" alt="" />
                         </div>
-                        <div class="banner-text">
-                            <h3 class="icon-box-title">Wide assortment</h3>
-                            <p>Mega Discounts</p>
+                        <div class="mg-token-body">
+                            <h3>Wide assortment</h3>
+                            <p>Mega discounts</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                    <div class="banner-left-icon d-flex align-items-center wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
-                        <div class="banner-icon">
+                <div class="col-lg col-md-6 col-12">
+                    <div class="mg-token-card mg-token-card--lavender wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
+                        <span class="mg-token-chip">30 days</span>
+                        <div class="mg-token-icon">
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-5.svg') }}" alt="" />
                         </div>
-                        <div class="banner-text">
-                            <h3 class="icon-box-title">Easy returns</h3>
-                            <p>Within 30 days</p>
+                        <div class="mg-token-body">
+                            <h3>Easy returns</h3>
+                            <p>Hassle-free refunds</p>
                         </div>
                     </div>
                 </div>
