@@ -136,45 +136,9 @@
 
 
 				  <div class="col-12">
-
-	 <div class="row g-3">
-
-	 <div class="col-md-6">	
-    <div class="form-check">
- <input class="form-check-input" name="hot_deals" type="checkbox" value="1" id="flexCheckDefault" {{ $products->hot_deals == 1 ? 'checked' : '' }} >
-			<label class="form-check-label" for="flexCheckDefault"> Hot Deals</label>
-		</div>
-	</div>
-
-	<div class="col-md-6">	
-    <div class="form-check">
-			<input class="form-check-input" name="featured" type="checkbox" value="1" id="flexCheckDefault" {{ $products->featured == 1 ? 'checked' : '' }}>
-			<label class="form-check-label" for="flexCheckDefault">Featured</label>
-		</div>
-	</div>
-
-
-
-
-<div class="col-md-6">	
-    <div class="form-check">
-			<input class="form-check-input" name="special_offer" type="checkbox" value="1" id="flexCheckDefault" {{ $products->special_offer == 1 ? 'checked' : '' }}>
-			<label class="form-check-label" for="flexCheckDefault">Special Offer</label>
-		</div>
-	</div>
-
-
-	<div class="col-md-6">	
-    <div class="form-check">
-			<input class="form-check-input" name="special_deals" type="checkbox" value="1" id="flexCheckDefault" {{ $products->special_deals == 1 ? 'checked' : '' }}>
-			<label class="form-check-label" for="flexCheckDefault">Special Deals</label>
-		</div>
-	</div>
-
-
-
-		</div> <!-- // end row  -->
-					 
+					<div class="alert alert-info mb-0">
+						Promotional flags (featured, hot deals) are managed by admin.
+					</div>
 				  </div>
 
 <hr>

@@ -92,7 +92,7 @@
 		 
 			  
 				<li>
-					<a href=" " target="_blank">
+					<a href="{{ route('page.contact') }}">
 						<div class="parent-icon"><i class="bx bx-support"></i>
 						</div>
 						<div class="menu-title">Support</div>

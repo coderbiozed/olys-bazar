@@ -5,18 +5,38 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Product;
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\Hash;
- 
 use App\Notifications\VendorRegNotification;
 use Illuminate\Support\Facades\Notification;
 
  
 class VendorController extends Controller
 {
-    public function VendorDashboard(){
+    public function VendorDashboard()
+    {
+        $vendorId = Auth::id();
 
-        return view('vendor.index');
+        $totalOrders = OrderItem::where('vendor_id', (string) $vendorId)->count();
+        $totalRevenue = OrderItem::where('vendor_id', (string) $vendorId)
+            ->get()
+            ->sum(fn ($item) => (float) $item->price * (int) $item->qty);
+        $totalProducts = Product::where('vendor_id', $vendorId)->count();
+        $activeProducts = Product::where('vendor_id', $vendorId)->where('status', 1)->count();
+        $recentOrders = OrderItem::with(['order.user', 'product'])
+            ->where('vendor_id', (string) $vendorId)
+            ->latest()
+            ->limit(8)
+            ->get();
 
+        return view('vendor.index', compact(
+            'totalOrders',
+            'totalRevenue',
+            'totalProducts',
+            'activeProducts',
+            'recentOrders'
+        ));
     } // End Mehtod 
 
   public function VendorLogin(){
@@ -49,20 +69,35 @@ public function VendorProfile(){
      public function VendorProfileStore(Request $request){
 
         $id = Auth::user()->id;
-        $data = User::find($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,'.$id,
+            'phone' => 'nullable|string|max:30',
+            'address' => 'nullable|string|max:500',
+            'vendor_join' => 'nullable|string|max:10',
+            'vendor_short_info' => 'nullable|string|max:1000',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+        ]);
+
+        $data = User::findOrFail($id);
         $data->name = $request->name;
         $data->email = $request->email;
         $data->phone = $request->phone;
-        $data->address = $request->address; 
-        $data->vendor_join = $request->vendor_join; 
-        $data->vendor_short_info = $request->vendor_short_info; 
-
+        $data->address = $request->address;
+        $data->vendor_join = $request->vendor_join;
+        $data->vendor_short_info = $request->vendor_short_info;
 
         if ($request->file('photo')) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/vendor_images/'.$data->photo));
+            if ($data->photo && file_exists(public_path('upload/vendor_images/'.$data->photo))) {
+                @unlink(public_path('upload/vendor_images/'.$data->photo));
+            }
+            if (!is_dir(public_path('upload/vendor_images'))) {
+                mkdir(public_path('upload/vendor_images'), 0755, true);
+            }
             $filename = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/vendor_images'),$filename);
+            $file->move(public_path('upload/vendor_images'), $filename);
             $data['photo'] = $filename;
         }
 
@@ -89,7 +124,7 @@ public function VendorUpdatePassword(Request $request){
         // Validation 
         $request->validate([
             'old_password' => 'required',
-            'new_password' => 'required|confirmed', 
+            'new_password' => 'required|confirmed|min:8',
         ]);
 
         // Match The Old Password
@@ -120,8 +155,10 @@ public function VendorUpdatePassword(Request $request){
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', 'unique:users,username'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed'],
+            'phone' => ['required', 'string', 'max:30'],
+            'password' => ['required', 'confirmed', 'min:8'],
         ]);
 
         $user = User::create([

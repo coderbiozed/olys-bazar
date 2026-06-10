@@ -103,9 +103,14 @@ class IndexController extends Controller
 
      public function VendorDetails($id){
 
-        $vendor = User::findOrFail($id);
-        $vproduct = Product::where('vendor_id',$id)->get();
-        return view('frontend.vendor.vendor_details',compact('vendor','vproduct'));
+        $vendor = User::where('id', $id)
+            ->where('role', 'vendor')
+            ->where('status', 'active')
+            ->firstOrFail();
+
+        $vproduct = Product::where('vendor_id', $id)->where('status', 1)->get();
+
+        return view('frontend.vendor.vendor_details', compact('vendor', 'vproduct'));
 
      } // End Method 
 
