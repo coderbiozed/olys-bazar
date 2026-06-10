@@ -37,6 +37,7 @@ use App\Http\Controllers\User\AllUserController;
 
 use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\HealthController;
+use App\Http\Controllers\ManifestController;
  
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,7 @@ use App\Http\Controllers\HealthController;
 */ 
  
 Route::get('/health', HealthController::class);
+Route::get('/manifest.webmanifest', ManifestController::class);
 
 Route::get('/', [IndexController::class, 'Index']);
 
