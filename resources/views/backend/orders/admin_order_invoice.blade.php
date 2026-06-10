@@ -138,7 +138,7 @@
           <td align="center">{{ $item->product->vendor->name }}</td>
           @endif
         
-        <td align="center">${{ $item->price }}</td>
+        <td align="center">{{ $currency }}{{ $item->price }}</td>
       </tr>
       @endforeach
     </tbody>
@@ -147,8 +147,8 @@
   <table width="100%" style=" padding:0 10px 0 10px;">
     <tr>
         <td align="right" >
-            <h2><span style="color: green;">Subtotal:</span>${{ $order->amount }}</h2>
-            <h2><span style="color: green;">Total:</span> ${{ $order->amount }}</h2>
+            <h2><span style="color: green;">Subtotal:</span>{{ $currency }}{{ $order->amount }}</h2>
+            <h2><span style="color: green;">Total:</span> {{ $currency }}{{ $order->amount }}</h2>
             {{-- <h2><span style="color: green;">Full Payment PAID</h2> --}}
         </td>
     </tr>

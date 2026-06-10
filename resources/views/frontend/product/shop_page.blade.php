@@ -135,14 +135,14 @@
 
                     @if($product->discount_price == NULL)
                      <div class="product-price">
-                        <span>${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->selling_price }}</span>
                        
                     </div>
 
                     @else
                     <div class="product-price">
-                        <span>${{ $product->discount_price }}</span>
-                        <span class="old-price">${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->discount_price }}</span>
+                        <span class="old-price">{{ $currency }}{{ $product->selling_price }}</span>
                     </div>
                     @endif
 
@@ -276,9 +276,9 @@ $products = App\Models\Product::where('category_id',$category->id)->get();
                 <p><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">{{ $product->product_name }}</a></p>
 
                    @if($product->discount_price == NULL)
-                    <p class="price mb-0 mt-5">${{ $product->selling_price }}</p>
+                    <p class="price mb-0 mt-5">{{ $currency }}{{ $product->selling_price }}</p>
                    @else
-                   <p class="price mb-0 mt-5">${{ $product->discount_price }}</p>
+                   <p class="price mb-0 mt-5">{{ $currency }}{{ $product->discount_price }}</p>
                    @endif
                 
                 <div class="product-rate">
@@ -314,7 +314,7 @@ $products = App\Models\Product::where('category_id',$category->id)->get();
                     values: price,  
                 slide: function (event, ui) { 
 
-                $("#amount").val('$'+ui.values[0]+"-"+'$'+ui.values[1]);
+                $("#amount").val('{{ $currency }}'+ui.values[0]+"-"+'{{ $currency }}'+ui.values[1]);
                 $("#price_range").val(ui.values[0]+"-"+ui.values[1]);
                 }
                 });  

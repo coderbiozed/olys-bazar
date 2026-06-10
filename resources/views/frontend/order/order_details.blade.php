@@ -127,7 +127,7 @@
 
                     <tr>
                         <th>Order Amonut:</th>
-                         <th>${{ $order->amount }}</th>
+                         <th>{{ $currency }}{{ $order->amount }}</th>
                     </tr>
 
                      <tr>
@@ -240,7 +240,7 @@
             </td>
 
             <td class="col-md-3">
-                <label>${{ $item->price }} <br> Total = ${{ $item->price * $item->qty }}   </label>
+                <label>{{ $currency }}{{ $item->price }} <br> Total = {{ $currency }}{{ $item->price * $item->qty }}   </label>
             </td> 
 
         </tr>

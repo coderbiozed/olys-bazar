@@ -27,6 +27,14 @@ class Product extends Model
         return $this->belongsTo(Brand::class,'brand_id','id');
     }
 
+    public function thumbnailUrl(): string
+    {
+        $path = $this->product_thambnail;
 
- 
+        if (is_string($path) && $path !== '' && file_exists(public_path($path))) {
+            return asset($path);
+        }
+
+        return asset('upload/no_image.jpg');
+    }
 }

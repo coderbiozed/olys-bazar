@@ -19,7 +19,7 @@ class CategorySubCategorySeeder extends Seeder
                 'id' => 1,
                 'category_name' => 'Fresh Produce',
                 'category_slug' => 'fresh-produce',
-                'category_image' => 'frontend/assets/imgs/theme/icons/category-1.svg',
+                'category_image' => 'upload/category/1740388203907617.png',
                 'subcategories' => [
                     ['name' => 'Fruits', 'slug' => 'fruits'],
                     ['name' => 'Vegetables', 'slug' => 'vegetables'],
@@ -32,7 +32,7 @@ class CategorySubCategorySeeder extends Seeder
                 'id' => 2,
                 'category_name' => 'Dairy & Eggs',
                 'category_slug' => 'dairy-eggs',
-                'category_image' => 'frontend/assets/imgs/theme/icons/category-2.svg',
+                'category_image' => 'upload/category/1740388410112488.webp',
                 'subcategories' => [
                     ['name' => 'Milk', 'slug' => 'milk'],
                     ['name' => 'Eggs', 'slug' => 'eggs'],
@@ -45,7 +45,7 @@ class CategorySubCategorySeeder extends Seeder
                 'id' => 3,
                 'category_name' => 'Beverages',
                 'category_slug' => 'beverages',
-                'category_image' => 'frontend/assets/imgs/theme/icons/category-3.svg',
+                'category_image' => 'upload/category/1740388444682193.webp',
                 'subcategories' => [
                     ['name' => 'Soft Drinks', 'slug' => 'soft-drinks'],
                     ['name' => 'Juice', 'slug' => 'juice'],
@@ -58,7 +58,7 @@ class CategorySubCategorySeeder extends Seeder
                 'id' => 4,
                 'category_name' => 'Grocery Staples',
                 'category_slug' => 'grocery-staples',
-                'category_image' => 'frontend/assets/imgs/theme/icons/category-4.svg',
+                'category_image' => 'upload/category/1740388456845535.webp',
                 'subcategories' => [
                     ['name' => 'Rice', 'slug' => 'rice'],
                     ['name' => 'Flour & Lentils', 'slug' => 'flour-lentils'],
@@ -71,7 +71,7 @@ class CategorySubCategorySeeder extends Seeder
                 'id' => 5,
                 'category_name' => 'Snacks & Bakery',
                 'category_slug' => 'snacks-bakery',
-                'category_image' => 'frontend/assets/imgs/theme/icons/category-5.svg',
+                'category_image' => 'upload/category/1740388475103826.webp',
                 'subcategories' => [
                     ['name' => 'Biscuits & Cookies', 'slug' => 'biscuits-cookies'],
                     ['name' => 'Chips & Nuts', 'slug' => 'chips-nuts'],
@@ -84,7 +84,7 @@ class CategorySubCategorySeeder extends Seeder
                 'id' => 6,
                 'category_name' => 'Household & Care',
                 'category_slug' => 'household-care',
-                'category_image' => 'frontend/assets/imgs/theme/icons/category-6.svg',
+                'category_image' => 'upload/category/1740388510925410.webp',
                 'subcategories' => [
                     ['name' => 'Cleaning Supplies', 'slug' => 'cleaning-supplies'],
                     ['name' => 'Kitchen Items', 'slug' => 'kitchen-items'],
@@ -97,7 +97,7 @@ class CategorySubCategorySeeder extends Seeder
                 'id' => 7,
                 'category_name' => 'Fashion & Electronics',
                 'category_slug' => 'fashion-electronics',
-                'category_image' => 'frontend/assets/imgs/theme/icons/category-7.svg',
+                'category_image' => 'upload/category/1740388599418960.webp',
                 'subcategories' => [
                     ['name' => 'Mobile & Gadgets', 'slug' => 'mobile-gadgets'],
                     ['name' => 'Computers & Laptops', 'slug' => 'computers-laptops'],
@@ -110,7 +110,7 @@ class CategorySubCategorySeeder extends Seeder
                 'id' => 8,
                 'category_name' => 'Frozen Foods',
                 'category_slug' => 'frozen-foods',
-                'category_image' => 'frontend/assets/imgs/theme/icons/category-8.svg',
+                'category_image' => 'upload/category/1740388616630915.webp',
                 'subcategories' => [
                     ['name' => 'Frozen Vegetables', 'slug' => 'frozen-vegetables'],
                     ['name' => 'Frozen Meat & Fish', 'slug' => 'frozen-meat-fish'],
@@ -123,7 +123,7 @@ class CategorySubCategorySeeder extends Seeder
                 'id' => 9,
                 'category_name' => 'Baby & Kids',
                 'category_slug' => 'baby-kids',
-                'category_image' => 'frontend/assets/imgs/theme/icons/category-9.svg',
+                'category_image' => 'upload/category/1740388649576724.webp',
                 'subcategories' => [
                     ['name' => 'Baby Food', 'slug' => 'baby-food'],
                     ['name' => 'Diapers & Wipes', 'slug' => 'diapers-wipes'],
@@ -136,7 +136,7 @@ class CategorySubCategorySeeder extends Seeder
                 'id' => 10,
                 'category_name' => 'Pet Supplies',
                 'category_slug' => 'pet-supplies',
-                'category_image' => 'frontend/assets/imgs/theme/icons/category-10.svg',
+                'category_image' => 'upload/category/1740388803723655.webp',
                 'subcategories' => [
                     ['name' => 'Dog Food', 'slug' => 'dog-food'],
                     ['name' => 'Cat Food', 'slug' => 'cat-food'],

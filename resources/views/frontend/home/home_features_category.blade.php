@@ -15,7 +15,7 @@
             @forelse($categories as $category)
                 <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}" class="mg-category-tile">
                     <span class="mg-category-tile__img">
-                        <img src="{{ asset($category->category_image) }}" alt="{{ $category->category_name }}" loading="lazy" />
+                        <img src="{{ $category->imageUrl() }}" alt="{{ $category->category_name }}" loading="lazy" />
                     </span>
                     <span class="mg-category-tile__name">{{ $category->category_name }}</span>
                     <span class="mg-category-tile__count">{{ $category->products_count }} items</span>

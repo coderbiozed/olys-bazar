@@ -37,7 +37,7 @@
 			<div class="card radius-10 bg-gradient-orange">
 				<div class="card-body">
 					<div class="d-flex align-items-center">
-						<h5 class="mb-0 text-white">${{ number_format($totalRevenue, 2) }}</h5>
+						<h5 class="mb-0 text-white">{{ $currency }}{{ number_format($totalRevenue, 2) }}</h5>
 						<div class="ms-auto">
 							<i class='bx bx-dollar fs-3 text-white'></i>
 						</div>
@@ -111,7 +111,7 @@
 							<td>{{ $item->product->product_name ?? 'N/A' }}</td>
 							<td>{{ $item->order->user->name ?? 'Guest' }}</td>
 							<td>{{ $item->created_at?->format('d M Y') }}</td>
-							<td>${{ number_format($item->price, 2) }}</td>
+							<td>{{ $currency }}{{ number_format($item->price, 2) }}</td>
 							<td>{{ $item->qty }}</td>
 							<td>
 								<a href="{{ route('vendor.order.details', $item->order_id) }}" class="btn btn-sm btn-outline-primary">Details</a>

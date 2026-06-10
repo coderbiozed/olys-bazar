@@ -40,10 +40,10 @@
 
         <div class="clearfix product-price-cover">
             <div class="product-price primary-color float-left">
-                <span class="current-price text-brand">$</span>
+                <span class="current-price text-brand">{{ $currency }}</span>
                 <span class="current-price text-brand" id="pprice"> </span>
 
-      <span class="old-price font-md ml-15">$ </span>
+      <span class="old-price font-md ml-15">{{ $currency }} </span>
        <span class="old-price font-md ml-15" id="oldprice">  </span>
                 
             </div>

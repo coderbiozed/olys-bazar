@@ -31,7 +31,7 @@
 							<div class="card radius-10 bg-gradient-deepblue">
 							 <div class="card-body">
 								<div class="d-flex align-items-center">
-									<h5 class="mb-0 text-white">${{ $today }}USD</h5>
+									<h5 class="mb-0 text-white">{{ $currency }}{{ $today }}</h5>
 									<div class="ms-auto">
                                         <i class='bx bx-cart fs-3 text-white'></i>
 									</div>
@@ -50,7 +50,7 @@
 							<div class="card radius-10 bg-gradient-orange">
 							<div class="card-body">
 								<div class="d-flex align-items-center">
-									<h5 class="mb-0 text-white">${{ $month }}USD</h5>
+									<h5 class="mb-0 text-white">{{ $currency }}{{ $month }}</h5>
 									<div class="ms-auto">
                                         <i class='bx bx-dollar fs-3 text-white'></i>
 									</div>
@@ -69,7 +69,7 @@
 							<div class="card radius-10 bg-gradient-ohhappiness">
 							<div class="card-body">
 								<div class="d-flex align-items-center">
-									<h5 class="mb-0 text-white">${{ $year }}USD</h5>
+									<h5 class="mb-0 text-white">{{ $currency }}{{ $year }}</h5>
 									<div class="ms-auto">
                                         <i class='bx bx-group fs-3 text-white'></i>
 									</div>
@@ -195,7 +195,7 @@ $orders = App\Models\Order::where('status','pending')->orderBy('id','DESC')->lim
 		 
 		<td>{{ $order->order_date }}</td>
 		<td>{{ $order->invoice_no }}</td>
-		<td>${{ $order->amount }}</td>
+		<td>{{ $currency }}{{ $order->amount }}</td>
 		<td>{{ $order->payment_method }}</td>
 		<td>
 			<div class="badge rounded-pill bg-light-info text-info w-100"> 

@@ -29,7 +29,7 @@
             <div class="product-img-action-wrap">
                 <div class="product-img product-img-zoom">
                     <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">
-                        <img class="default-img" src="{{ asset( $product->product_thambnail ) }}" alt="" />
+                        <img class="default-img" src="{{ $product->thumbnailUrl() }}" alt="{{ $product->product_name }}" />
                         
                     </a>
                 </div>
@@ -114,14 +114,14 @@
 
                     @if($product->discount_price == NULL)
                      <div class="product-price">
-                        <span>${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->selling_price }}</span>
                        
                     </div>
 
                     @else
                     <div class="product-price">
-                        <span>${{ $product->discount_price }}</span>
-                        <span class="old-price">${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->discount_price }}</span>
+                        <span class="old-price">{{ $currency }}{{ $product->selling_price }}</span>
                     </div>
                     @endif
 
@@ -161,7 +161,7 @@ $catwiseProduct = App\Models\Product::where('category_id',$category->id)->orderB
             <div class="product-img-action-wrap">
                 <div class="product-img product-img-zoom">
                     <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">
-                        <img class="default-img" src="{{ asset( $product->product_thambnail ) }}" alt="" />
+                        <img class="default-img" src="{{ $product->thumbnailUrl() }}" alt="{{ $product->product_name }}" />
                         
                     </a>
                 </div>
@@ -216,14 +216,14 @@ $catwiseProduct = App\Models\Product::where('category_id',$category->id)->orderB
 
                     @if($product->discount_price == NULL)
                      <div class="product-price">
-                        <span>${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->selling_price }}</span>
                        
                     </div>
 
                     @else
                     <div class="product-price">
-                        <span>${{ $product->discount_price }}</span>
-                        <span class="old-price">${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->discount_price }}</span>
+                        <span class="old-price">{{ $currency }}{{ $product->selling_price }}</span>
                     </div>
                     @endif
 

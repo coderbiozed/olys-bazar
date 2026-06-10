@@ -131,14 +131,14 @@ $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1
 
                     @if($product->discount_price == NULL)
                      <div class="product-price">
-                        <span>${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->selling_price }}</span>
                        
                     </div>
 
                     @else
                     <div class="product-price">
-                        <span>${{ $product->discount_price }}</span>
-                        <span class="old-price">${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->discount_price }}</span>
+                        <span class="old-price">{{ $currency }}{{ $product->selling_price }}</span>
                     </div>
                     @endif
 
@@ -255,14 +255,14 @@ $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1
 
                     @if($product->discount_price == NULL)
                      <div class="product-price">
-                        <span>${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->selling_price }}</span>
                        
                     </div>
 
                     @else
                     <div class="product-price">
-                        <span>${{ $product->discount_price }}</span>
-                        <span class="old-price">${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->discount_price }}</span>
+                        <span class="old-price">{{ $currency }}{{ $product->selling_price }}</span>
                     </div>
                     @endif
 
@@ -383,14 +383,14 @@ $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1
 
                     @if($product->discount_price == NULL)
                      <div class="product-price">
-                        <span>${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->selling_price }}</span>
                        
                     </div>
 
                     @else
                     <div class="product-price">
-                        <span>${{ $product->discount_price }}</span>
-                        <span class="old-price">${{ $product->selling_price }}</span>
+                        <span>{{ $currency }}{{ $product->discount_price }}</span>
+                        <span class="old-price">{{ $currency }}{{ $product->selling_price }}</span>
                     </div>
                     @endif
 
@@ -452,14 +452,14 @@ $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1
             </div>
              @if($item->discount_price == NULL)
                      <div class="product-price">
-                        <span>${{ $item->selling_price }}</span>
+                        <span>{{ $currency }}{{ $item->selling_price }}</span>
                        
                     </div>
 
                     @else
                     <div class="product-price">
-                        <span>${{ $item->discount_price }}</span>
-                        <span class="old-price">${{ $item->selling_price }}</span>
+                        <span>{{ $currency }}{{ $item->discount_price }}</span>
+                        <span class="old-price">{{ $currency }}{{ $item->selling_price }}</span>
                     </div>
                     @endif
         </div>
@@ -496,14 +496,14 @@ $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1
             </div>
              @if($item->discount_price == NULL)
                      <div class="product-price">
-                        <span>${{ $item->selling_price }}</span>
+                        <span>{{ $currency }}{{ $item->selling_price }}</span>
                        
                     </div>
 
                     @else
                     <div class="product-price">
-                        <span>${{ $item->discount_price }}</span>
-                        <span class="old-price">${{ $item->selling_price }}</span>
+                        <span>{{ $currency }}{{ $item->discount_price }}</span>
+                        <span class="old-price">{{ $currency }}{{ $item->selling_price }}</span>
                     </div>
                     @endif
         </div>
@@ -536,14 +536,14 @@ $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1
             </div>
              @if($item->discount_price == NULL)
                      <div class="product-price">
-                        <span>${{ $item->selling_price }}</span>
+                        <span>{{ $currency }}{{ $item->selling_price }}</span>
                        
                     </div>
 
                     @else
                     <div class="product-price">
-                        <span>${{ $item->discount_price }}</span>
-                        <span class="old-price">${{ $item->selling_price }}</span>
+                        <span>{{ $currency }}{{ $item->discount_price }}</span>
+                        <span class="old-price">{{ $currency }}{{ $item->selling_price }}</span>
                     </div>
                     @endif
         </div>
@@ -576,14 +576,14 @@ $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1
             </div>
              @if($item->discount_price == NULL)
                      <div class="product-price">
-                        <span>${{ $item->selling_price }}</span>
+                        <span>{{ $currency }}{{ $item->selling_price }}</span>
                        
                     </div>
 
                     @else
                     <div class="product-price">
-                        <span>${{ $item->discount_price }}</span>
-                        <span class="old-price">${{ $item->selling_price }}</span>
+                        <span>{{ $currency }}{{ $item->discount_price }}</span>
+                        <span class="old-price">{{ $currency }}{{ $item->selling_price }}</span>
                     </div>
                     @endif
         </div>
