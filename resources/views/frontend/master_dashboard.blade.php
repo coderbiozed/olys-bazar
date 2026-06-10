@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/home-mobile.css?v=1.0') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/glass-vibe.css?v=1.2') }}" />
     <style>
         .logo.logo-width-1 a img,
         .mobile-header-logo img {
@@ -360,8 +361,8 @@
         success:function(response){
             // console.log(response)
 
-        $('span[id="cartSubTotal"]').text(response.cartTotal);
-        $('#cartQty').text(response.cartQty);
+        $('.js-cart-subtotal').text(response.cartTotal);
+        $('.js-cart-qty').text(response.cartQty);
 
         var miniCart = ""
 
@@ -384,7 +385,7 @@
                `  
           });
 
-            $('#miniCart').html(miniCart);
+            $('.js-mini-cart').html(miniCart);
 
         }
 
@@ -502,7 +503,7 @@
 
                 success:function(response){
 
-                $('#wishQty').text(response.wishQty);
+                $('.js-wish-qty').text(response.wishQty);
 
                    var rows = ""
                    $.each(response.wishlist, function(key,value){

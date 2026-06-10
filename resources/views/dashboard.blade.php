@@ -16,6 +16,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/home-mobile.css?v=1.0') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/glass-vibe.css?v=1.2') }}" />
     <style>
         .logo.logo-width-1 a img,
         .mobile-header-logo img {

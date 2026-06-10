@@ -124,24 +124,27 @@ public function VendorUpdatePassword(Request $request){
             'password' => ['required', 'confirmed'],
         ]);
 
-        $user = User::insert([ 
+        $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
             'phone' => $request->phone,
-            'vendor_join' => $request->vendor_join,
+            'vendor_join' => $request->vendor_join ?: (string) date('Y'),
             'password' => Hash::make($request->password),
             'role' => 'vendor',
             'status' => 'inactive',
         ]);
 
+        Auth::login($user);
+        $request->session()->regenerate();
+
           $notification = array(
-            'message' => 'Vendor Registered Successfully',
+            'message' => 'Vendor Registered Successfully. Your account is pending admin approval.',
             'alert-type' => 'success'
         );
 
        Notification::send($vuser, new VendorRegNotification($request));
-        return redirect()->route('vendor.login')->with($notification);
+        return redirect()->route('vendor.dashobard')->with($notification);
        
     }// End Mehtod 
 

@@ -1,0 +1,668 @@
+/**
+ * MukamGhor / Olys Bazar — Global Glass Vibe
+ * Load after main.css to apply frosted-glass UI across the storefront.
+ */
+
+:root {
+    --glass-bg-1: #e8f5ec;
+    --glass-bg-2: #d4ebe8;
+    --glass-bg-3: #f0f4ff;
+    --glass-bg-4: #e6f7ef;
+    --glass-surface: rgba(255, 255, 255, 0.42);
+    --glass-surface-strong: rgba(255, 255, 255, 0.62);
+    --glass-surface-soft: rgba(255, 255, 255, 0.28);
+    --glass-border: rgba(255, 255, 255, 0.72);
+    --glass-border-muted: rgba(37, 61, 78, 0.1);
+    --glass-shadow: 0 8px 32px rgba(37, 61, 78, 0.1);
+    --glass-shadow-lg: 0 20px 56px rgba(37, 61, 78, 0.14);
+    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+    --glass-highlight-soft: inset 0 -1px 0 rgba(255, 255, 255, 0.25);
+    --glass-card-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.42) 48%, rgba(255, 255, 255, 0.32) 100%);
+    --glass-card-bg-hover: linear-gradient(145deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0.4) 100%);
+    --glass-card-shadow:
+        0 1px 2px rgba(37, 61, 78, 0.04),
+        0 8px 20px rgba(37, 61, 78, 0.07),
+        0 20px 44px rgba(37, 61, 78, 0.06);
+    --glass-card-shadow-hover:
+        0 2px 4px rgba(37, 61, 78, 0.05),
+        0 16px 32px rgba(37, 61, 78, 0.1),
+        0 32px 64px rgba(45, 159, 111, 0.12);
+    --glass-blur: blur(20px);
+    --glass-blur-strong: blur(28px);
+    --glass-blur-card: blur(24px) saturate(165%);
+    --glass-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --glass-radius: 18px;
+    --glass-radius-sm: 12px;
+    --glass-brand: #2d9f6f;
+    --glass-brand-dark: #1f7a54;
+    --glass-text: #253d4e;
+    --glass-text-muted: #5c6f7d;
+    --glass-food-vibrancy: saturate(1.5) brightness(1.06) contrast(1.08);
+}
+
+/* ---------- Vibrant food & product backdrop ---------- */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    position: relative;
+    color: var(--glass-text);
+    background: linear-gradient(155deg, var(--glass-bg-1) 0%, var(--glass-bg-2) 40%, var(--glass-bg-4) 100%) !important;
+    min-height: 100vh;
+    isolation: isolate;
+}
+
+/* Floating product & grocery imagery */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -12%;
+    z-index: -2;
+    pointer-events: none;
+    background-image:
+        url("../imgs/shop/product-2-1.jpg"),
+        url("../imgs/shop/product-8-1.jpg"),
+        url("../imgs/shop/product-10-1.jpg"),
+        url("../imgs/shop/product-5-1.jpg"),
+        url("../imgs/shop/product-12-2.jpg"),
+        url("../imgs/shop/product-7-1.jpg"),
+        url("../imgs/shop/cat-1.png"),
+        url("../imgs/shop/cat-4.png"),
+        url("../imgs/banner/banner-1.png");
+    background-size:
+        360px 360px,
+        320px 320px,
+        400px 400px,
+        300px 300px,
+        280px 280px,
+        340px 340px,
+        220px 220px,
+        200px 200px,
+        480px 280px;
+    background-position:
+        -6% 8%,
+        94% 6%,
+        8% 82%,
+        90% 78%,
+        48% 102%,
+        72% 38%,
+        12% 42%,
+        86% 48%,
+        50% -4%;
+    background-repeat: no-repeat;
+    filter: var(--glass-food-vibrancy);
+    opacity: 0.62;
+    border-radius: 0;
+    animation: glass-food-drift 32s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+/* Soft veil — keeps content readable, glass panels pop */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 85% 65% at 50% 38%, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.42) 42%, rgba(232, 245, 236, 0.18) 100%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(228, 240, 234, 0.35) 45%, rgba(255, 255, 255, 0.45) 100%),
+        radial-gradient(ellipse 60% 50% at 0% 100%, rgba(59, 183, 126, 0.12), transparent 60%),
+        radial-gradient(ellipse 55% 45% at 100% 0%, rgba(245, 197, 24, 0.1), transparent 55%);
+}
+
+@keyframes glass-food-drift {
+    0% {
+        transform: scale(1) translate(0, 0);
+    }
+    50% {
+        transform: scale(1.04) translate(-1.2%, 1%);
+    }
+    100% {
+        transform: scale(1.02) translate(1%, -0.8%);
+    }
+}
+
+.main,
+.header-area,
+footer.main {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- Header ---------- */
+.header-area,
+.header-top,
+.header-middle,
+.header-bottom,
+.header-bottom-bg-color,
+.sticky-bar {
+    background: var(--glass-surface-strong) !important;
+    backdrop-filter: var(--glass-blur-strong);
+    -webkit-backdrop-filter: var(--glass-blur-strong);
+    border-bottom: 1px solid var(--glass-border-muted) !important;
+    box-shadow: var(--glass-shadow), var(--glass-highlight);
+}
+
+.mobile-header-wrapper-style,
+.mobile-header-active {
+    background: var(--glass-surface-strong) !important;
+    backdrop-filter: var(--glass-blur-strong);
+    -webkit-backdrop-filter: var(--glass-blur-strong);
+    border-left: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow-lg);
+}
+
+.cart-dropdown-wrap,
+.account-dropdown,
+.categories-dropdown-wrap {
+    background: var(--glass-surface-strong) !important;
+    backdrop-filter: var(--glass-blur-strong);
+    -webkit-backdrop-filter: var(--glass-blur-strong);
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--glass-radius) !important;
+    box-shadow: var(--glass-shadow-lg), var(--glass-highlight) !important;
+}
+
+/* ---------- Professional glass cards ---------- */
+.product-cart-wrap,
+.card,
+.mg-category-card,
+.categori-card-2,
+.card-2,
+.vendor-wrap,
+.login_wrap,
+.padding_eight_all.bg-white,
+.blog-card {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--glass-card-bg) !important;
+    backdrop-filter: var(--glass-blur-card);
+    -webkit-backdrop-filter: var(--glass-blur-card);
+    border: 1px solid rgba(255, 255, 255, 0.82) !important;
+    border-radius: var(--glass-radius) !important;
+    box-shadow: var(--glass-card-shadow), var(--glass-highlight), var(--glass-highlight-soft) !important;
+    transition:
+        transform 0.4s var(--glass-ease),
+        box-shadow 0.4s var(--glass-ease),
+        border-color 0.4s var(--glass-ease),
+        background 0.4s var(--glass-ease);
+}
+
+/* Top light refraction */
+.product-cart-wrap::before,
+.card::before,
+.mg-category-card::before,
+.categori-card-2::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        165deg,
+        rgba(255, 255, 255, 0.65) 0%,
+        rgba(255, 255, 255, 0.12) 38%,
+        transparent 62%
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Subtle brand edge glow */
+.product-cart-wrap::after,
+.card::after,
+.mg-category-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.95),
+        rgba(255, 255, 255, 0.15) 45%,
+        rgba(59, 183, 126, 0.22) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.85;
+}
+
+.product-cart-wrap:hover,
+.card:hover,
+.mg-category-card:hover,
+.categori-card-2:hover {
+    background: var(--glass-card-bg-hover) !important;
+    box-shadow: var(--glass-card-shadow-hover), var(--glass-highlight), var(--glass-highlight-soft) !important;
+    transform: translateY(-6px);
+    border-color: rgba(59, 183, 126, 0.38) !important;
+}
+
+/* Product card — image well */
+.product-cart-wrap .product-img-action-wrap {
+    position: relative;
+    z-index: 1;
+    margin: 12px 12px 0 !important;
+    padding: 14px 14px 0 !important;
+    max-height: none !important;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.18)) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;
+    border-radius: calc(var(--glass-radius) - 4px) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        0 4px 16px rgba(37, 61, 78, 0.05) !important;
+    overflow: hidden;
+}
+
+.product-cart-wrap .product-img-action-wrap .product-img {
+    border-radius: calc(var(--glass-radius-sm) - 2px) !important;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.product-cart-wrap .product-img-action-wrap .product-img a img {
+    border-radius: calc(var(--glass-radius-sm) - 2px);
+    transition: transform 0.55s var(--glass-ease);
+}
+
+.product-cart-wrap:hover .product-img-action-wrap .product-img a img {
+    transform: scale(1.04);
+}
+
+/* Product card — content footer */
+.product-cart-wrap .product-content-wrap {
+    position: relative;
+    z-index: 1;
+    margin: 0 !important;
+    padding: 16px 18px 20px !important;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.08)) !important;
+    border: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.55) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+}
+
+.product-cart-wrap .product-content-wrap .product-category {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.75;
+}
+
+.product-cart-wrap .product-content-wrap h2 {
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 8px;
+}
+
+.product-cart-wrap .product-content-wrap .product-price {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.product-cart-wrap .product-content-wrap .product-price span.old-price {
+    opacity: 0.55;
+    font-weight: 600;
+}
+
+/* Floating action pill on product */
+.product-cart-wrap .product-action-1,
+.product-cart-wrap .product-img-action-wrap .product-action-1 {
+    background: rgba(255, 255, 255, 0.82) !important;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.9) !important;
+    border-radius: 999px !important;
+    box-shadow:
+        0 8px 24px rgba(37, 61, 78, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+}
+
+.product-cart-wrap .product-badges span {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 4px 12px rgba(37, 61, 78, 0.1);
+}
+
+/* Category glass tiles */
+.mg-category-card,
+.categori-card-2,
+.card-2 {
+    padding: 4px;
+}
+
+.mg-category-card a,
+.categori-card-2 a {
+    position: relative;
+    z-index: 1;
+}
+
+/* Other panels (lighter glass) */
+.banner-img.style-2,
+.deal,
+.vendor-img-action-wrap,
+.newsletter,
+.footer-mid,
+.footer-bottom,
+.table-wishlist,
+.order_table,
+.shop-product-fillter,
+.archive-header,
+.coupon,
+.detail-info,
+.product-detail,
+.vendor-info,
+.vendor-wrap.style-2,
+.post-thumb,
+.single-hero-slider .slider-content {
+    background: var(--glass-surface) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--glass-radius) !important;
+    box-shadow: var(--glass-card-shadow), var(--glass-highlight) !important;
+}
+
+/* ---------- Hero slider ---------- */
+.mg-hero-section .single-hero-slider {
+    border-radius: var(--glass-radius) !important;
+    overflow: hidden;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: var(--glass-shadow-lg) !important;
+}
+
+.mg-hero-section .slider-content {
+    background: var(--glass-surface-soft) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: var(--glass-radius-sm);
+    border: 1px solid var(--glass-border);
+    padding: 24px 28px !important;
+    max-width: min(520px, 90%);
+}
+
+/* ---------- Footer ---------- */
+footer.main,
+.footer-main,
+.footer-mid,
+.footer-bottom {
+    background: var(--glass-surface) !important;
+    backdrop-filter: var(--glass-blur-strong);
+    -webkit-backdrop-filter: var(--glass-blur-strong);
+    border-top: 1px solid var(--glass-border-muted) !important;
+}
+
+.newsletter {
+    background: var(--glass-surface-strong) !important;
+}
+
+/* ---------- Forms & inputs ---------- */
+.form-control,
+.form-select,
+select.select-active,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+textarea {
+    background: rgba(255, 255, 255, 0.5) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--glass-radius-sm) !important;
+    color: var(--glass-text) !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus,
+select.select-active:focus,
+input:focus,
+textarea:focus {
+    background: rgba(255, 255, 255, 0.75) !important;
+    border-color: rgba(59, 183, 126, 0.45) !important;
+    box-shadow: 0 0 0 3px rgba(59, 183, 126, 0.15) !important;
+    outline: none;
+}
+
+/* ---------- Buttons ---------- */
+.btn,
+button[type="submit"],
+.button,
+.action-btn {
+    border-radius: 999px !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-brand,
+.btn-fill-out,
+.button-add-to-cart,
+.btn-primary:not(.admin-btn) {
+    background: linear-gradient(135deg, var(--glass-brand) 0%, #3bb77e 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 8px 24px rgba(45, 159, 111, 0.28) !important;
+    color: #fff !important;
+}
+
+.btn-brand:hover,
+.btn-fill-out:hover,
+.button-add-to-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(45, 159, 111, 0.35) !important;
+}
+
+.btn-outline,
+.outline,
+.btn-outline-primary {
+    background: var(--glass-surface-soft) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(59, 183, 126, 0.4) !important;
+    color: var(--glass-brand-dark) !important;
+}
+
+/* ---------- Brand accents ---------- */
+.text-brand {
+    color: var(--glass-brand) !important;
+}
+
+.bg-brand {
+    background: linear-gradient(135deg, var(--glass-brand), #3bb77e) !important;
+}
+
+/* ---------- Breadcrumb & page headers ---------- */
+.page-header,
+.breadcrumb-wrap,
+.breadcrumb {
+    background: transparent !important;
+}
+
+.breadcrumb {
+    background: var(--glass-surface-soft) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 999px !important;
+    padding: 10px 18px !important;
+    display: inline-flex;
+}
+
+/* ---------- Tables (cart, checkout, wishlist) ---------- */
+.table,
+.table-striped,
+.table-wishlist,
+.order_table table {
+    background: var(--glass-surface) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: var(--glass-radius) !important;
+    overflow: hidden;
+    border: 1px solid var(--glass-border) !important;
+}
+
+.table thead th {
+    background: rgba(255, 255, 255, 0.45) !important;
+    border-bottom: 1px solid var(--glass-border-muted) !important;
+}
+
+.table tbody tr {
+    background: transparent !important;
+}
+
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* ---------- Modals & quick view ---------- */
+.modal-content,
+#quickViewModal .modal-content {
+    background: var(--glass-surface-strong) !important;
+    backdrop-filter: var(--glass-blur-strong);
+    -webkit-backdrop-filter: var(--glass-blur-strong);
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--glass-radius) !important;
+    box-shadow: var(--glass-shadow-lg) !important;
+}
+
+/* ---------- Search dropdown ---------- */
+#searchProducts {
+    background: var(--glass-surface-strong) !important;
+    backdrop-filter: var(--glass-blur-strong);
+    -webkit-backdrop-filter: var(--glass-blur-strong);
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--glass-radius-sm) !important;
+    box-shadow: var(--glass-shadow-lg) !important;
+}
+
+/* ---------- Promo / flash bar ---------- */
+.mobile-promotion,
+.header-top {
+    background: linear-gradient(90deg, rgba(59, 183, 126, 0.85), rgba(45, 159, 111, 0.9)) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    color: #fff !important;
+}
+
+/* ---------- Section headings ---------- */
+.section-title h3,
+.mg-section-head h3,
+.heading_s1 h1 {
+    color: var(--glass-text);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- User dashboard sidebar ---------- */
+.dashboard-menu,
+.dashboard-content,
+.card-body {
+    border-radius: var(--glass-radius) !important;
+}
+
+.dashboard-menu ul li a {
+    border-radius: var(--glass-radius-sm);
+}
+
+.dashboard-menu ul li a.active,
+.dashboard-menu ul li a:hover {
+    background: var(--glass-surface-strong) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+}
+
+/* ---------- Subtle scroll polish ---------- */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(59, 183, 126, 0.45);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(45, 159, 111, 0.65);
+    background-clip: padding-box;
+}
+
+/* Shop grid spacing — cards breathe */
+.row.product-grid .col-lg-1-5,
+.row.product-grid > [class*="col-"],
+.related-products > [class*="col-"] {
+    margin-bottom: 8px;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    body::before {
+        animation: none;
+    }
+
+    .product-cart-wrap:hover,
+    .card:hover,
+    .mg-category-card:hover,
+    .btn-brand:hover,
+    .btn-fill-out:hover {
+        transform: none;
+    }
+
+    .product-cart-wrap:hover .product-img-action-wrap .product-img a img {
+        transform: none;
+    }
+}
+
+/* ---------- Mobile tweaks ---------- */
+@media (max-width: 991.98px) {
+    body::before {
+        background-size:
+            220px 220px,
+            200px 200px,
+            240px 240px,
+            180px 180px,
+            160px 160px,
+            200px 200px,
+            140px 140px,
+            130px 130px,
+            300px 180px;
+        opacity: 0.48;
+    }
+
+    body::after {
+        background:
+            radial-gradient(ellipse 95% 70% at 50% 35%, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.55) 50%, rgba(232, 245, 236, 0.25) 100%),
+            linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(228, 240, 234, 0.4) 100%);
+    }
+
+    .mg-hero-section .slider-content {
+        padding: 16px 18px !important;
+    }
+
+    .product-cart-wrap,
+    .card {
+        border-radius: var(--glass-radius-sm) !important;
+    }
+}
+
+/* Fallback when backdrop-filter unsupported */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    :root {
+        --glass-surface: rgba(255, 255, 255, 0.92);
+        --glass-surface-strong: rgba(255, 255, 255, 0.96);
+        --glass-surface-soft: rgba(255, 255, 255, 0.88);
+    }
+}
