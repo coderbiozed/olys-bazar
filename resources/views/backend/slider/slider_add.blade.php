@@ -56,7 +56,8 @@
 					<h6 class="mb-0">Slider Image  </h6>
 				</div>
 				<div class="col-sm-9 text-secondary">
-					<input type="file" name="slider_image" class="form-control"  id="image"   />
+					<input type="file" name="slider_image" class="form-control" id="image" accept="image/jpeg,image/png,image/gif,image/bmp,image/webp" required />
+					<small class="text-muted">JPG, PNG, GIF, BMP, or WebP only (max 5 MB). HEIC/SVG/PDF are not supported.</small>
 				</div>
 			</div>
 

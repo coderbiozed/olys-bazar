@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Slider;
+use Illuminate\Validation\ValidationException;
 use Image;
  
 class SliderController extends Controller
@@ -21,18 +22,42 @@ class SliderController extends Controller
 
     private function saveSliderImage($image): string
     {
+        if (!$image || !$image->isValid()) {
+            throw ValidationException::withMessages([
+                'slider_image' => 'Please upload a valid image file.',
+            ]);
+        }
+
+        $path = $image->getRealPath();
+        if (!$path || !is_file($path)) {
+            throw ValidationException::withMessages([
+                'slider_image' => 'Uploaded file could not be read. Use JPG, PNG, GIF, BMP, or WebP.',
+            ]);
+        }
+
         $sliderDir = public_path('upload/slider');
         if (!is_dir($sliderDir)) {
             mkdir($sliderDir, 0755, true);
         }
 
-        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(2376, 807)->save($sliderDir.'/'.$name_gen);
+        $extension = strtolower($image->extension() ?: $image->getClientOriginalExtension() ?: 'jpg');
+        if (!in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'], true)) {
+            $extension = 'jpg';
+        }
+
+        $name_gen = hexdec(uniqid()).'.'.$extension;
+        Image::make($path)->resize(2376, 807)->save($sliderDir.'/'.$name_gen);
 
         return 'upload/slider/'.$name_gen;
     }
 
     public function StoreSlider(Request $request){
+
+        $request->validate([
+            'slider_title' => 'required|string|max:255',
+            'short_title' => 'required|string|max:255',
+            'slider_image' => 'required|image|mimes:jpeg,png,jpg,gif,bmp,webp|max:5120',
+        ]);
 
         $save_url = $this->saveSliderImage($request->file('slider_image'));
 
@@ -59,6 +84,12 @@ class SliderController extends Controller
 
 
  public function UpdateSlider(Request $request){
+
+        $request->validate([
+            'slider_title' => 'required|string|max:255',
+            'short_title' => 'required|string|max:255',
+            'slider_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,bmp,webp|max:5120',
+        ]);
 
         $slider_id = $request->id;
         $old_img = $request->old_image;
