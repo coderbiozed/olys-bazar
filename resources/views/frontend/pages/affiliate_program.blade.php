@@ -1,7 +1,7 @@
 @extends('frontend.pages.info_layout')
 @section('page_title', 'Affiliate Program')
 @section('page_content')
-<p>Earn commissions by promoting Olys Bazar products to your audience.</p>
+<p>Earn commissions by promoting Our products to your audience.</p>
 
 <h5 class="mb-15 mt-30">How It Works</h5>
 <ol>

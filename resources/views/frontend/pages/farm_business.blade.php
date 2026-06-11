@@ -1,7 +1,7 @@
 @extends('frontend.pages.info_layout')
 @section('page_title', 'Farm Business')
 @section('page_content')
-<p>Olys Bazar partners with local farms and food producers to bring fresh, quality products directly to customers across Bangladesh.</p>
+<p>We are partners with local farms and food producers to bring fresh, quality products directly to customers across Bangladesh.</p>
 
 <h5 class="mb-15 mt-30">For Farm Vendors</h5>
 <ul>

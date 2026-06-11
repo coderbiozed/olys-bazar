@@ -1,7 +1,7 @@
 @extends('frontend.pages.info_layout')
 @section('page_title', 'Careers')
 @section('page_content')
-<p>Join the Olys Bazar team and help shape the future of e-commerce in Bangladesh.</p>
+<p>Join Our team and help shape the future of e-commerce in Bangladesh.</p>
 
 <h5 class="mb-15 mt-30">Why Work With Us</h5>
 <ul>

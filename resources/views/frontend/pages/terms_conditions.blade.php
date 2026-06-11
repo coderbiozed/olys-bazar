@@ -1,7 +1,7 @@
 @extends('frontend.pages.info_layout')
 @section('page_title', 'Terms & Conditions')
 @section('page_content')
-<p>By using Olys Bazar, you agree to the following terms and conditions.</p>
+<p>By using our services, you agree to the following terms and conditions.</p>
 
 <h5 class="mb-15 mt-30">Orders &amp; Payments</h5>
 <ul>
@@ -17,5 +17,5 @@
 <p>You are responsible for maintaining the confidentiality of your account credentials and for all activity under your account.</p>
 
 <h5 class="mb-15 mt-30">Vendor Products</h5>
-<p>Products are sold by independent vendors. Olys Bazar facilitates the marketplace but vendors are responsible for product quality and fulfillment.</p>
+<p>Products are sold by independent vendors. We facilitate the marketplace but vendors are responsible for product quality and fulfillment.</p>
 @endsection

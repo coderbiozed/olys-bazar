@@ -1,7 +1,7 @@
 @extends('frontend.pages.info_layout')
 @section('page_title', 'Accessibility')
 @section('page_content')
-<p>Olys Bazar is committed to making our website accessible to all users, including those with disabilities.</p>
+<p>We are committed to making our website accessible to all users, including those with disabilities.</p>
 
 <h5 class="mb-15 mt-30">Our Commitment</h5>
 <ul>
