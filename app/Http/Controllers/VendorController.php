@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\VendorRegNotification;
+use App\Models\SiteSetting;
 use Illuminate\Support\Facades\Notification;
 
  
@@ -144,7 +145,55 @@ public function VendorUpdatePassword(Request $request){
 
 
     public function BecomeVendor(){
-        return view('auth.become_vendor');
+        $setting = SiteSetting::find(1);
+        $siteName = $setting?->site_name ?? 'Olys Bazar';
+
+        $faqEntries = [
+            [
+                '@type' => 'Question',
+                'name' => 'How long does vendor approval take?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'Most vendor applications are reviewed within 1 to 3 business days.',
+                ],
+            ],
+            [
+                '@type' => 'Question',
+                'name' => 'Do I need a trade license to sell on the marketplace?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'Individual sellers can start with NID verification. Registered businesses should provide a trade license.',
+                ],
+            ],
+            [
+                '@type' => 'Question',
+                'name' => 'Who handles delivery for vendor orders?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'Vendors pack orders and hand them to marketplace courier partners for nationwide delivery.',
+                ],
+            ],
+        ];
+
+        $structuredData = [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                [
+                    '@type' => 'WebPage',
+                    '@id' => route('become.vendor') . '/#webpage',
+                    'url' => route('become.vendor'),
+                    'name' => 'Become a Vendor — ' . $siteName,
+                    'description' => 'Apply to sell on ' . $siteName . '. Requirements, fees, onboarding steps, and vendor registration for Bangladesh sellers.',
+                    'isPartOf' => ['@id' => url('/') . '/#organization'],
+                ],
+                [
+                    '@type' => 'FAQPage',
+                    'mainEntity' => $faqEntries,
+                ],
+            ],
+        ];
+
+        return view('auth.become_vendor', compact('setting', 'siteName', 'structuredData'));
     } // End Mehtod 
 
 
@@ -158,7 +207,11 @@ public function VendorUpdatePassword(Request $request){
             'username' => ['required', 'string', 'max:255', 'unique:users,username'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'string', 'max:30'],
+            'address' => ['nullable', 'string', 'max:500'],
+            'vendor_short_info' => ['nullable', 'string', 'max:1000'],
+            'vendor_join' => ['nullable', 'string', 'max:10'],
             'password' => ['required', 'confirmed', 'min:8'],
+            'terms' => ['accepted'],
         ]);
 
         $user = User::create([
@@ -166,6 +219,8 @@ public function VendorUpdatePassword(Request $request){
             'username' => $request->username,
             'email' => $request->email,
             'phone' => $request->phone,
+            'address' => $request->address,
+            'vendor_short_info' => $request->vendor_short_info,
             'vendor_join' => $request->vendor_join ?: (string) date('Y'),
             'password' => Hash::make($request->password),
             'role' => 'vendor',

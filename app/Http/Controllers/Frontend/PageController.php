@@ -12,17 +12,142 @@ class PageController extends Controller
 {
     public function aboutUs()
     {
-        return view('frontend.pages.about_us');
+        $setting = SiteSetting::find(1);
+        $siteName = $setting?->site_name ?? 'Olys Bazar';
+
+        $sameAs = array_values(array_filter([
+            $setting?->facebook,
+            $setting?->twitter,
+            $setting?->youtube,
+        ]));
+
+        $organizationSchema = array_filter([
+            '@type' => 'Organization',
+            '@id' => url('/') . '/#organization',
+            'name' => $siteName,
+            'url' => url('/'),
+            'logo' => $setting?->logo_url ?? asset('frontend/assets/imgs/theme/logo-mukamghor.png'),
+            'description' => 'Trusted multi-vendor online marketplace in Bangladesh connecting customers with verified local vendors for groceries, fashion, electronics, and daily essentials.',
+            'foundingDate' => '2020',
+            'areaServed' => [
+                '@type' => 'Country',
+                'name' => 'Bangladesh',
+            ],
+            'address' => $setting?->company_address ? [
+                '@type' => 'PostalAddress',
+                'addressLocality' => $setting->company_address,
+                'addressCountry' => 'BD',
+            ] : null,
+            'contactPoint' => ($setting?->email || $setting?->phone_one) ? array_filter([
+                '@type' => 'ContactPoint',
+                'contactType' => 'customer service',
+                'telephone' => $setting?->phone_one,
+                'email' => $setting?->email,
+                'availableLanguage' => ['en', 'bn'],
+            ]) : null,
+            'sameAs' => $sameAs ?: null,
+        ]);
+
+        $aboutPageSchema = [
+            '@type' => 'AboutPage',
+            '@id' => route('page.about') . '/#webpage',
+            'url' => route('page.about'),
+            'name' => 'About ' . $siteName,
+            'description' => 'Learn about ' . $siteName . ' — our mission, team, marketplace expertise, and commitment to trustworthy e-commerce in Bangladesh.',
+            'isPartOf' => ['@id' => url('/') . '/#organization'],
+            'about' => ['@id' => url('/') . '/#organization'],
+        ];
+
+        $structuredData = [
+            '@context' => 'https://schema.org',
+            '@graph' => [$organizationSchema, $aboutPageSchema],
+        ];
+
+        return view('frontend.pages.about_us', compact('setting', 'siteName', 'structuredData'));
     }
 
     public function deliveryInformation()
     {
-        return view('frontend.pages.delivery_information');
+        $setting = SiteSetting::find(1);
+        $siteName = $setting?->site_name ?? 'Olys Bazar';
+
+        $faqEntries = [
+            [
+                '@type' => 'Question',
+                'name' => 'How do I track my order?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'Go to the Track Order page and enter your invoice number from the confirmation email or SMS.',
+                ],
+            ],
+            [
+                '@type' => 'Question',
+                'name' => 'Can I change my delivery address after ordering?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'Contact support within 2 hours of placing your order. Once dispatched, address changes may not be possible.',
+                ],
+            ],
+            [
+                '@type' => 'Question',
+                'name' => 'What if I am not home when delivery arrives?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'The courier will attempt delivery up to two times and may leave the package with a trusted neighbour or reschedule.',
+                ],
+            ],
+            [
+                '@type' => 'Question',
+                'name' => 'Do you deliver on weekends and public holidays?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'Standard deliveries operate Saturday through Thursday. Fridays and national holidays may add one business day.',
+                ],
+            ],
+        ];
+
+        $structuredData = [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                [
+                    '@type' => 'WebPage',
+                    '@id' => route('page.delivery') . '/#webpage',
+                    'url' => route('page.delivery'),
+                    'name' => 'Delivery Information — ' . $siteName,
+                    'description' => 'Shipping coverage, delivery charges, order processing steps, and tracking for ' . $siteName . ' across Bangladesh.',
+                    'isPartOf' => ['@id' => url('/') . '/#organization'],
+                ],
+                [
+                    '@type' => 'FAQPage',
+                    'mainEntity' => $faqEntries,
+                ],
+            ],
+        ];
+
+        return view('frontend.pages.delivery_information', compact('setting', 'siteName', 'structuredData'));
     }
 
     public function privacyPolicy()
     {
-        return view('frontend.pages.privacy_policy');
+        $setting = SiteSetting::find(1);
+        $siteName = $setting?->site_name ?? 'Olys Bazar';
+
+        $structuredData = [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                [
+                    '@type' => 'WebPage',
+                    '@id' => route('page.privacy') . '/#webpage',
+                    'url' => route('page.privacy'),
+                    'name' => 'Privacy Policy — ' . $siteName,
+                    'description' => 'How ' . $siteName . ' collects, uses, and protects your personal information.',
+                    'dateModified' => '2026-06-01',
+                    'isPartOf' => ['@id' => url('/') . '/#organization'],
+                ],
+            ],
+        ];
+
+        return view('frontend.pages.privacy_policy', compact('setting', 'siteName', 'structuredData'));
     }
 
     public function termsConditions()
@@ -67,7 +192,55 @@ class PageController extends Controller
 
     public function supportCenter()
     {
-        return view('frontend.pages.support_center');
+        $setting = SiteSetting::find(1);
+        $siteName = $setting?->site_name ?? 'Olys Bazar';
+
+        $faqEntries = [
+            [
+                '@type' => 'Question',
+                'name' => 'How long does support take to respond?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'We aim to respond to all tickets within 24 hours. Urgent delivery issues are prioritized.',
+                ],
+            ],
+            [
+                '@type' => 'Question',
+                'name' => 'Can I cancel my order after placing it?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'Orders can be cancelled within 2 hours if the vendor has not started processing.',
+                ],
+            ],
+            [
+                '@type' => 'Question',
+                'name' => 'How do I report a damaged product?',
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'Take photos and submit a support ticket within 24 hours of delivery with your invoice number.',
+                ],
+            ],
+        ];
+
+        $structuredData = [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                [
+                    '@type' => 'WebPage',
+                    '@id' => route('page.support') . '/#webpage',
+                    'url' => route('page.support'),
+                    'name' => 'Support Center — ' . $siteName,
+                    'description' => 'Get help with orders, returns, payments, and account issues at ' . $siteName . '.',
+                    'isPartOf' => ['@id' => url('/') . '/#organization'],
+                ],
+                [
+                    '@type' => 'FAQPage',
+                    'mainEntity' => $faqEntries,
+                ],
+            ],
+        ];
+
+        return view('frontend.pages.support_center', compact('setting', 'siteName', 'structuredData'));
     }
 
     public function careers()
@@ -97,7 +270,24 @@ class PageController extends Controller
 
     public function trackOrder()
     {
-        return view('frontend.pages.track_order');
+        $setting = SiteSetting::find(1);
+        $siteName = $setting?->site_name ?? 'Olys Bazar';
+
+        $structuredData = [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                [
+                    '@type' => 'WebPage',
+                    '@id' => route('public.track.order') . '/#webpage',
+                    'url' => route('public.track.order'),
+                    'name' => 'Track My Order — ' . $siteName,
+                    'description' => 'Track your ' . $siteName . ' order status using your invoice number.',
+                    'isPartOf' => ['@id' => url('/') . '/#organization'],
+                ],
+            ],
+        ];
+
+        return view('frontend.pages.track_order', compact('setting', 'siteName', 'structuredData'));
     }
 
     public function orderTracking(Request $request)
